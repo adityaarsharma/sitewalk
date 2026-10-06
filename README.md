@@ -2,7 +2,9 @@
 
 <div align="center">
 
-# 🕷️ librecrawl-technical-seo-audit-mcp
+# 🕷️ Sitewalk: Technical SEO Site Audit
+
+**Repository: `librecrawl-technical-seo-audit-mcp`** · the open-source Sitewalk engine and MCP server · **[Hosted Sitewalk → audit.adityaarsharma.com](https://audit.adityaarsharma.com/)** (ChatGPT plugin coming soon)
 
 [![MCP Toplist](https://mcptoplist.com/badge/pulsemcp%2Fadityaarsharma-librecrawl-seo.svg)](https://mcptoplist.com/server/pulsemcp%2Fadityaarsharma-librecrawl-seo)
 
