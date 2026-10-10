@@ -7,6 +7,7 @@
 **Repository: `librecrawl-technical-seo-audit-mcp`** · the open-source Sitewalk engine and MCP server · **[Hosted Sitewalk → audit.adityaarsharma.com](https://audit.adityaarsharma.com/)** (ChatGPT plugin coming soon)
 
 [![MCP Toplist](https://mcptoplist.com/badge/pulsemcp%2Fadityaarsharma-librecrawl-seo.svg)](https://mcptoplist.com/server/pulsemcp%2Fadityaarsharma-librecrawl-seo)
+[![Leave a tip](https://img.shields.io/badge/Leave%20a%20tip-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/adityaarsharma)
 
 ### **The AI-native technical SEO crawler.**
 
