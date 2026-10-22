@@ -8,7 +8,9 @@
 
 **Ask your AI assistant to audit a website. Get the technical SEO problems back, ranked by impact, with a plain fix for each.**
 
-**[Use it in ChatGPT, no install](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a)** · [Add to Cursor](https://audit.adityaarsharma.com/start/#cursor) · [Claude Code plugin](#-claude-code-plugin-and-the-seo-growth-agent) · [Self-host it](#-install-in-60-seconds) · [audit.adityaarsharma.com](https://audit.adityaarsharma.com/)
+**[Use it in ChatGPT, no install](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a)** · **[Add to Cursor in one click](https://cursor.com/install-mcp?name=sitewalk&config=eyJ1cmwiOiJodHRwczovL2F1ZGl0LmFkaXR5YWFyc2hhcm1hLmNvbS9tY3AifQ==)** · **[Self-host with Docker](#-run-the-full-stack-with-docker-recommended-for-self-hosting)** · [Claude Code plugin](#-claude-code-plugin-and-the-seo-growth-agent) · [audit.adityaarsharma.com](https://audit.adityaarsharma.com/)
+
+Coming soon to Grok.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-orange?style=for-the-badge&logo=anthropic)](https://modelcontextprotocol.io)
@@ -19,18 +21,17 @@
 
 [![ChatGPT](https://img.shields.io/badge/ChatGPT-plugin-10A37F?style=flat-square)](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a)
 [![Works With](https://img.shields.io/badge/Claude%20Code-plugin-D97757?style=flat-square)](#-claude-code-plugin-and-the-seo-growth-agent)
-[![Works With](https://img.shields.io/badge/Cursor-supported-000000?style=flat-square)](https://audit.adityaarsharma.com/start/#cursor)
+[![Works With](https://img.shields.io/badge/Cursor-supported-000000?style=flat-square)](https://cursor.com/install-mcp?name=sitewalk&config=eyJ1cmwiOiJodHRwczovL2F1ZGl0LmFkaXR5YWFyc2hhcm1hLmNvbS9tY3AifQ==)
 [![Works With](https://img.shields.io/badge/Claude%20Desktop-supported-D97757?style=flat-square)](https://claude.ai/download)
 [![Works With](https://img.shields.io/badge/OpenAI%20Codex-supported-10A37F?style=flat-square)](https://github.com/openai/codex)
 [![Works With](https://img.shields.io/badge/Windsurf-supported-00C2A8?style=flat-square)](https://codeium.com/windsurf)
-[![Grok](https://img.shields.io/badge/Grok-coming%20soon-555555?style=flat-square)](#-hosted-or-self-hosted)
 [![MCP Toplist](https://mcptoplist.com/badge/pulsemcp%2Fadityaarsharma-librecrawl-seo.svg)](https://mcptoplist.com/server/pulsemcp%2Fadityaarsharma-librecrawl-seo)
 
 </div>
 
 ---
 
-## Two ways to run Sitewalk
+## Three ways to run Sitewalk
 
 ### 1. Hosted: one sentence, nothing to install
 
@@ -47,16 +48,17 @@ The same hosted server works in any MCP client that supports remote servers with
 | Client | How to connect |
 |---|---|
 | **ChatGPT** | [Open the Sitewalk plugin](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a) |
-| **Cursor** | [Add to Cursor](https://cursor.com/en/install-mcp?name=sitewalk&config=eyJ1cmwiOiJodHRwczovL2F1ZGl0LmFkaXR5YWFyc2hhcm1hLmNvbS9tY3AifQ==) (deeplink), or add `https://audit.adityaarsharma.com/mcp` under Settings, MCP |
+| **Cursor** | [Add to Cursor](https://cursor.com/install-mcp?name=sitewalk&config=eyJ1cmwiOiJodHRwczovL2F1ZGl0LmFkaXR5YWFyc2hhcm1hLmNvbS9tY3AifQ==) (deeplink), or add `https://audit.adityaarsharma.com/mcp` under Settings, MCP |
 | **Claude Code** | `/plugin marketplace add adityaarsharma/sitewalk` then `/plugin install sitewalk@sitewalk`, or `claude mcp add --transport http sitewalk https://audit.adityaarsharma.com/mcp` |
 | **Any MCP client** | Remote URL `https://audit.adityaarsharma.com/mcp` (streamable HTTP, OAuth sign-in by email) |
-| **Grok** | Coming soon |
 
 Hosted tools: `start_site_audit`, `get_audit_status`, `get_audit_report`.
 
+What sets the hosted route apart: you start the crawl from the chat itself, with nothing to install and no earlier audit needed. Bigger hosted crawls are coming with Pro.
+
 ### 2. Self-hosted: this repository
 
-The full open-source engine and MCP server: no page caps, 38 MCP tools, 50+ checks, branded PDF plus CSVs, and nothing kept on the server after you download the zip. Runs on your own machine or server with Docker. Jump to [Install in 60 seconds](#-install-in-60-seconds).
+The full open-source engine and MCP server: no page cap when self-hosted (your own server), 38 MCP tools, 50+ checks (self-hosted build), branded PDF plus CSVs, and nothing kept on the server after you download the zip. Runs on your own machine or server with Docker. Jump to [Install in 60 seconds](#-install-in-60-seconds).
 
 ### Hosted or self-hosted
 
@@ -65,7 +67,7 @@ The full open-source engine and MCP server: no page caps, 38 MCP tools, 50+ chec
 | Setup | None. Sign in with email | Docker or the one-line installer |
 | Pages per audit | 50 for any site, 500 for a site you verify | No cap |
 | Audits | 3 a month on the free account | As many as your server can run |
-| Checks | The core technical checks, ranked by impact | 50+ checks, extended CSVs |
+| Checks | The core technical checks, ranked by impact | 50+ checks (extended checks), extended CSVs |
 | Output | Ranked list in chat, full report with CSV and PDF | Zip with a PDF and 7 CSVs |
 | Data | Reports stay private to your account | Ephemeral: wiped after you download |
 | Crawler | SitewalkBot, obeys robots.txt, 1 page every 2 seconds | Your own IP and settings |
@@ -129,7 +131,7 @@ You:    Show me broken pages + broken external links + hreflang errors
 Agent:  → reads CSVs, prints filtered tables. Server already forgot the audit.
 ```
 
-That's the product. **Your AI assistant runs a full technical SEO audit for you.** You get a branded PDF + 7 CSVs covering 50+ technical checks, ready to hand a client. The server wipes everything the moment you download.
+That's the product. **Your AI assistant runs a full technical SEO audit for you.** With the self-hosted build you get a branded PDF + 7 CSVs covering 50+ technical checks (the extended checks), ready to hand a client. The server wipes everything the moment you download.
 
 ---
 
@@ -265,6 +267,8 @@ Add to your client config (Claude Desktop example):
 
 ## 🚀 50+ checks every audit
 
+> These 50+ checks are the extended checks in the self-hosted build. The hosted ChatGPT and Cursor version runs the core technical checks.
+
 <table>
 <tr>
 <td valign="top" width="50%">
@@ -336,14 +340,11 @@ Article · Product · Recipe · FAQPage · BreadcrumbList · Event · JobPosting
 
 | Capability | Desktop crawler (Screaming Frog SEO Spider™)<sup>1</sup> | Desktop+cloud crawler (Sitebulb™)<sup>2</sup> | Cloud site-audit (Ahrefs™)<sup>3</sup> | **Sitewalk (self-hosted)** |
 |---|:---:|:---:|:---:|:---:|
-| **Pricing model** | Free tier (500 URLs) · paid annual licence | Paid monthly subscription | Bundled with main subscription | **Free, MIT-licensed, self-hosted** |
-| **Page cap** | 500 free / unlimited paid | Unlimited | Tiered by subscription plan | **♾️ Unlimited** |
-| **Runs inside your AI assistant** | ❌ | ❌ | ❌ | ✅ |
-| **Chunked / background crawl (no timeout)** | ❌ | ❌ | Cloud only | ✅ |
-| **Auto-adaptive crawl delay (AIMD)** | ❌ | Manual | Hidden | ✅ |
-| **WAF / bot-block detection on 200-OK pages** | ❌ | ❌ | ❌ | ✅ |
-| **Sitemap-orphan fill (URLs not internally linked)** | ❌ | ❌ | ❌ | ✅ |
-| **Ephemeral by default (zero server footprint)** | N/A | N/A | N/A | ✅ |
+| **Pricing model** | Free tier (500 URLs) · paid annual licence | See vendor site | Bundled with main subscription | **Free, MIT-licensed, self-hosted** |
+| **Page cap** | 500 URLs free, licence removes the limit | See vendor site | Tiered by subscription plan | **No page cap when self-hosted (your own server)** |
+| **Works with your AI assistant (MCP)** | ✅ Official MCP server since v24.1, needs the desktop app installed | ✅ Read-only MCP over finished audits | See vendor site | ✅ |
+| **Start a crawl from the chat, nothing installed** | Needs the desktop app | Audit is run in the Sitebulb app first | See vendor site | ✅ Hosted version |
+| **Ephemeral by default (zero server footprint)** | N/A | N/A | N/A | ✅ Self-hosted |
 | Broken links (4xx/5xx/timeout/DNS/SSL) | ✅ | ✅ | ✅ | ✅ |
 | Redirect chains with destination | ✅ | ✅ | ✅ | ✅ |
 | Title / meta / H1 + duplicates | ✅ | ✅ | ✅ | ✅ |
@@ -355,11 +356,9 @@ Article · Product · Recipe · FAQPage · BreadcrumbList · Event · JobPosting
 | Mixed content (HTTPS → HTTP) | ✅ | ✅ | ✅ | ✅ |
 | Security headers pack | ✅ | ✅ | Partial | ✅ |
 | Image performance + CLS | ✅ | ✅ | ✅ | ✅ |
-| Content quality (Flesch · AI-tells · boilerplate) | ❌ | Partial | ❌ | ✅ |
+| Content issues (Screaming Frog lists Content under its Issues tab) | ✅ | See vendor site | ✅ | ✅ Flesch, AI-tells, boilerplate |
 | Crawl-budget traps (calendar · session-id · facets) | ✅ | ✅ | ✅ | ✅ |
-| Branded PDF report | ❌ | ✅ | ❌ | ✅ |
-| GSC clicks/impressions merge | Paid add-on | Paid add-on | Native | ✅ |
-| JavaScript rendering | ✅ | ✅ | Cloud only | 🛣️ Roadmap |
+| GSC clicks/impressions merge | See vendor site | See vendor site | Native | ✅ |
 
 <sub>
 <sup>1</sup> Screaming Frog SEO Spider is a trademark of Screaming Frog Ltd, UK. We are not affiliated.<br>
@@ -367,7 +366,7 @@ Article · Product · Recipe · FAQPage · BreadcrumbList · Event · JobPosting
 <sup>3</sup> Ahrefs is a trademark of Ahrefs Pte. Ltd., Singapore. We are not affiliated.
 </sub>
 
-**Reading guide:** if you currently use a paid on-site crawler and your workflow is *"crawl → export CSVs → analyse"*, self-hosted Sitewalk covers that flow inside your AI assistant for £0 with no page caps. If your workflow depends on JavaScript-rendered SPAs, that's on the [roadmap](#-roadmap) but not shipped yet — use the desktop tool for now.
+**Where each fits:** Sitewalk is the crawler you drive from your AI assistant. The hosted version needs nothing installed and starts from one sentence. Self-host it for the full engine and no page cap on your own server. JavaScript rendering is on the [roadmap](#-roadmap), and Pro is coming for bigger hosted crawls.
 
 ---
 
@@ -582,6 +581,6 @@ Deeper guides live in [`docs/`](docs/):
 
 <sub>
 
-**Discoverability keywords:** seo audit mcp server · open-source seo crawler · self-hosted seo crawler · technical seo audit mcp · on-site seo audit tool · alternative to paid seo crawlers · free seo audit tool · seo crawler for claude · seo crawler for cursor · seo crawler for openai codex · seo crawler for windsurf · seo crawler for continue.dev · mcp server for seo · model context protocol seo · hreflang audit tool free · canonical chain checker · broken link checker unlimited · core web vitals audit cli · structured data validator command line · schema.org rich results validator · sitemap audit tool · sitemap orphan detection · WAF detection crawler · cloudflare challenge detector · security headers checker · CSP HSTS audit · google search console integration crawler · soft 404 detection · chunked crawler no timeout MCP · technical SEO audit api · python seo crawler · seo agency tool open source · ephemeral seo audit · agency-safe seo crawler · branded pdf seo report · seo audit cli tool · mit-licensed seo crawler · free site audit tool · enterprise seo crawler self-hosted · librecrawl mcp · librecrawl mcp server
+**Discoverability keywords:** seo audit mcp server · open-source seo crawler · self-hosted seo crawler · technical seo audit mcp · on-site seo audit tool · alternative to paid seo crawlers · free seo audit tool · seo crawler for claude · seo crawler for cursor · seo crawler for openai codex · seo crawler for windsurf · seo crawler for continue.dev · mcp server for seo · model context protocol seo · hreflang audit tool free · canonical chain checker · broken link checker with no page cap · core web vitals audit cli · structured data validator command line · schema.org rich results validator · sitemap audit tool · sitemap orphan detection · WAF detection crawler · cloudflare challenge detector · security headers checker · CSP HSTS audit · google search console integration crawler · soft 404 detection · chunked crawler no timeout MCP · technical SEO audit api · python seo crawler · seo agency tool open source · ephemeral seo audit · agency-safe seo crawler · branded pdf seo report · seo audit cli tool · mit-licensed seo crawler · free site audit tool · enterprise seo crawler self-hosted · librecrawl mcp · librecrawl mcp server
 
 </sub>

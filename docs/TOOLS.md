@@ -10,7 +10,7 @@ This is the modern flow: start → poll → zip. It never times out and survives
 
 | Tool | Signature | What it does |
 |---|---|---|
-| `librecrawl_start_chunked_audit` | `(url, total_max_pages=10000)` | Kicks off a full background audit. Returns a `session_id` in under 2 seconds. `total_max_pages=0` means unlimited. |
+| `librecrawl_start_chunked_audit` | `(url, total_max_pages=10000)` | Kicks off a full background audit. Returns a `session_id` in under 2 seconds. `total_max_pages=0` means no page cap. |
 | `librecrawl_audit_status` | `(session_id)` | Poll this every ~25s. Reports `status` (queued/crawling/done), `pages_done`, `current_delay_ms`, chunk p95 latency, error rate, and `artifacts_ready`. |
 | `librecrawl_audit_zip` | `(session_id, auto_cleanup=False)` | Returns the finished audit as a base64 zip (PDF + 7 CSVs) plus its sha256. Nothing is deleted yet unless `auto_cleanup=True`. |
 | `librecrawl_audit_confirm_saved` | `(session_id, sha256)` | Call after saving the zip, with the hash of the saved bytes. On a match the server wipes the session, artifacts, zip and upstream crawl record; on a mismatch it deletes nothing. |
