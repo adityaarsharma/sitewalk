@@ -3,7 +3,7 @@ name: librecrawl-audit
 description: Run a full technical SEO audit on any website via the librecrawl-technical-seo-audit-mcp MCP server. Use when the user asks for "audit X site", "SEO check", "broken link sweep", "Screaming Frog this site", "schema validation", "site health report", "core web vitals scan", "find missing meta / H1 / canonical", "sitemap audit", "external link check", or any phrase indicating they want a comprehensive technical SEO audit on a live URL. Returns a PDF + 7 sidecar CSVs as a zip. Server is ephemeral: once you save the zip and confirm its hash, the audit is gone from the server.
 ---
 
-# ⚠️ MANDATORY RULES — read first, no exceptions
+# ⚠️ MANDATORY RULES: read first, no exceptions
 
 These are hard rules. If you skip any of them, the audit is broken from the user's perspective even if the MCP call succeeded.
 
@@ -21,7 +21,7 @@ with open(local_path, "wb") as f:
 local_sha = hashlib.sha256(data).hexdigest()
 ```
 
-You report the LOCAL path back to the user. **NEVER** report the `zip_path` field from the response as the deliverable — that path is on the **remote server**, not on the operator's local machine. The user cannot open it.
+You report the LOCAL path back to the user. **NEVER** report the `zip_path` field from the response as the deliverable: that path is on the **remote server**, not on the operator's local machine. The user cannot open it.
 
 ## Rule 2: ALWAYS confirm the save
 
@@ -77,13 +77,13 @@ librecrawl_start_chunked_audit(
     total_max_pages=10000,        # default 10k; raise to 100k for huge sites
     chunk_target_pages=50,         # polling-window size
     politeness="auto",             # AIMD adaptive (recommended)
-    fill_sitemap_orphans=True,    # default — also fetch sitemap URLs not internally linked
+    fill_sitemap_orphans=True,    # default: also fetch sitemap URLs not internally linked
     sitemap_fill_cap=500           # default cap for orphan fill
 )
 → returns { session_id, status: "queued", url, total_max_pages }
 ```
 
-**Do NOT use** `librecrawl_audit` (no `start_chunked_` prefix) for production — it blocks for up to 2 hours and disconnects the MCP client on big sites. It exists for backwards-compat only.
+**Do NOT use** `librecrawl_audit` (no `start_chunked_` prefix) for production: it blocks for up to 2 hours and disconnects the MCP client on big sites. It exists for backwards-compat only.
 
 ### 2. Poll status until done
 
@@ -140,14 +140,14 @@ The zip contains:
 |---|---|---|
 | `SUMMARY.txt` | Plain | One-page orientation (site, session, pages, audit_complete, artifact list) |
 | `<domain>-<ts>.pdf` | PDF | Branded human-readable report (open in any PDF viewer) |
-| `<domain>-<ts>.md` | Markdown | Source of the PDF — grep-friendly |
+| `<domain>-<ts>.md` | Markdown | Source of the PDF: grep-friendly |
 | `<domain>-<ts>.per-page.csv` | CSV | One row per crawled URL × 30 columns of check booleans + `failed_checks_list` |
 | `<domain>-<ts>.sitemap-recon.csv` | CSV | Sitemap-vs-crawl diff |
 | `<domain>-<ts>.external-links.csv` | CSV | Every outbound URL with HEAD-validated status |
 | `<domain>-<ts>.content-audit.csv` | CSV | Per-page readability + AI-tells + punctuation findings |
 | `<domain>-<ts>.extended-checks.csv` | CSV | One row per (URL × check_name × severity × detail) finding |
 
-When the user asks "show me the broken pages" or "what schema errors do I have", read the relevant CSV from the saved zip and filter — do NOT re-run the audit.
+When the user asks "show me the broken pages" or "what schema errors do I have", read the relevant CSV from the saved zip and filter: do NOT re-run the audit.
 
 ### 5. Done
 
@@ -170,16 +170,16 @@ After a successful `confirm_saved` the server holds nothing for this audit. For 
 
 ```text
 1. Run chunked audit first (skill above)
-2. After download: librecrawl_schema_validate(crawl_id) — wait, this needs an alive session.
+2. After download: librecrawl_schema_validate(crawl_id): wait, this needs an alive session.
    PREFERRED: run it after librecrawl_audit_zip but BEFORE confirm_saved, while the
    upstream crawl still exists, then confirm.
 ```
 
 ### "Just check external links on this site"
 
-Same chunked workflow — the `.external-links.csv` sidecar covers it. Don't run `librecrawl_external_links_audit` standalone unless the user has a crawl_id from a chunked audit that has not been confirmed yet.
+Same chunked workflow: the `.external-links.csv` sidecar covers it. Don't run `librecrawl_external_links_audit` standalone unless the user has a crawl_id from a chunked audit that has not been confirmed yet.
 
-### "Big site — like 50,000 pages"
+### "Big site: like 50,000 pages"
 
 ```text
 librecrawl_start_chunked_audit(
@@ -200,14 +200,14 @@ When you start an audit, set expectations:
 - Large (1000-10000): 10-30 min
 - Bigger: poll-and-wait pattern, can run for hours
 
-The server is ephemeral — emphasise that the zip is the only copy.
+The server is ephemeral: emphasise that the zip is the only copy.
 
 ## What NOT to do
 
-- ❌ Don't run multiple chunked audits in parallel — LibreCrawl backend is single-tenant. Queue them.
-- ❌ Don't call `librecrawl_audit_zip` before status is `done` — returns an error.
+- ❌ Don't run multiple chunked audits in parallel: LibreCrawl backend is single-tenant. Queue them.
+- ❌ Don't call `librecrawl_audit_zip` before status is `done`: returns an error.
 - ❌ Don't store the base64 in your conversation buffer for analysis. Save to disk, then read from disk.
-- ❌ Don't suggest the user rerun the audit just to look at different findings — every CSV is in the zip already.
+- ❌ Don't suggest the user rerun the audit just to look at different findings: every CSV is in the zip already.
 - ❌ Don't manually call `librecrawl_brain_purge_audit`: `librecrawl_audit_confirm_saved` does this for you.
 
 ## MCP tool reference (38 tools)
@@ -215,26 +215,26 @@ The server is ephemeral — emphasise that the zip is the only copy.
 Quick map of all tools the librecrawl MCP exposes. Most flows use only the **highlighted 4**.
 
 **Chunked audit flow** (use these in 95% of cases):
-- **`librecrawl_start_chunked_audit`** — kick off
-- **`librecrawl_audit_status`** — poll
-- **`librecrawl_audit_zip`** — download + auto-clean
+- **`librecrawl_start_chunked_audit`**: kick off
+- **`librecrawl_audit_status`**: poll
+- **`librecrawl_audit_zip`**: download + auto-clean
 
 **Specialist tools** (run standalone when needed, but most data is already in the chunked-audit zip):
-- `librecrawl_external_links_audit(crawl_id)` — re-run external-link validation on a specific crawl
-- `librecrawl_schema_validate(crawl_id)` — deeper schema validation
-- `librecrawl_merge_gsc_data(crawl_id, gsc_data)` — fold in GSC clicks/impressions
-- `librecrawl_pagespeed_audit_all_crawl_pages(crawl_id)` — full PSI across every crawled URL
-- `librecrawl_schema_check(url)`, `librecrawl_schema_audit(urls)` — per-URL schema inspection
-- `librecrawl_site_check(url)` — instant site-level check (robots, sitemap, HTTPS)
-- `librecrawl_pagespeed(url)`, `librecrawl_pagespeed_audit(urls)` — PSI for individual URLs
+- `librecrawl_external_links_audit(crawl_id)`: re-run external-link validation on a specific crawl
+- `librecrawl_schema_validate(crawl_id)`: deeper schema validation
+- `librecrawl_merge_gsc_data(crawl_id, gsc_data)`: fold in GSC clicks/impressions
+- `librecrawl_pagespeed_audit_all_crawl_pages(crawl_id)`: full PSI across every crawled URL
+- `librecrawl_schema_check(url)`, `librecrawl_schema_audit(urls)`: per-URL schema inspection
+- `librecrawl_site_check(url)`: instant site-level check (robots, sitemap, HTTPS)
+- `librecrawl_pagespeed(url)`, `librecrawl_pagespeed_audit(urls)`: PSI for individual URLs
 
 **Maintenance**:
-- **`librecrawl_wipe_everything(confirm=True)`** — nuclear reset to zero
-- `librecrawl_audit_pause`, `librecrawl_audit_resume`, `librecrawl_audit_cancel`, `librecrawl_audit_force_advance` — session control
+- **`librecrawl_wipe_everything(confirm=True)`**: nuclear reset to zero
+- `librecrawl_audit_pause`, `librecrawl_audit_resume`, `librecrawl_audit_cancel`, `librecrawl_audit_force_advance`: session control
 
 **Legacy** (avoid):
-- `librecrawl_audit`, `librecrawl_full_audit_strict` — blocking variants kept for backwards compat
-- `librecrawl_generate_report`, `librecrawl_report_content`, `librecrawl_audit_pdf` — older artifact APIs
+- `librecrawl_audit`, `librecrawl_full_audit_strict`: blocking variants kept for backwards compat
+- `librecrawl_generate_report`, `librecrawl_report_content`, `librecrawl_audit_pdf`: older artifact APIs
 
 ## Repo
 

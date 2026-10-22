@@ -66,7 +66,7 @@ The full open-source engine and MCP server: no page cap when self-hosted (your o
 | Setup | None. Sign in with email | Docker or the one-line installer |
 | Pages per audit | 50 for any site, 500 for a site you verify | No cap |
 | Audits | 3 a month on the free account, 50 a month on Pro (waitlist) | As many as your server can run |
-| Checks | The core technical checks, ranked by impact | 30+ checks (extended checks), extended CSVs |
+| Checks | The core technical checks and an extra-checks pass, ranked by impact | 30+ checks (extended checks), extended CSVs |
 | Output | Ranked list in chat, full report with CSV and PDF | Zip with a PDF and 7 CSVs |
 | Data | Reports stay private to your account | Ephemeral: wiped after you download |
 | Crawler | SitewalkBot, obeys robots.txt, 1 page every 2 seconds | Your own IP and settings |
@@ -265,14 +265,14 @@ Add to your client config (Claude Desktop example):
 
 ## 🚀 30+ checks every audit
 
-> These 30+ checks are the extended checks in the self-hosted build. The hosted ChatGPT version runs the core technical checks.
+> These 30+ checks are the extended checks in the self-hosted build. The hosted ChatGPT version runs the core technical checks plus an extra-checks pass on every audit. That pass uses its own check names, so the hosted report labels differ from this list.
 
 <table>
 <tr>
 <td valign="top" width="50%">
 
 #### 🔒 Security & headers
-`missing_hsts` · `missing_csp` · `missing_x_frame_options` · `missing_x_content_type_options` · `missing_referrer_policy` · `x_robots_tag_vs_meta_mismatch` · `mixed_content`
+`missing_hsts_header` · `missing_csp_header` · `missing_x_frame_options` · `missing_x_content_type_options` · `missing_referrer_policy` · `x_robots_tag_vs_meta_mismatch` · `mixed_content`
 
 #### 🛡️ WAF / bot-block detection
 `bot_block_challenge_detected`: fingerprints **Cloudflare · Akamai · DataDome · Imperva · PerimeterX**
@@ -281,7 +281,7 @@ Add to your client config (Claude Desktop example):
 `sitemap_url_noindex` · `sitemap_url_3xx` · `sitemap_url_disallowed_in_robots` · `sitemap_contains_canonicalized` · `sitemap_over_50k_urls` · `sitemap_over_50mb`
 
 #### 🌍 Hreflang full audit
-`missing_return_tag` · `missing_self_reference` · `missing_x_default` · `invalid_codes` · `to_noindex` · `to_broken` · `conflicts_lang_attr`
+`hreflang_missing_return_tag` · `hreflang_missing_self_reference` · `hreflang_missing_x_default` · `hreflang_invalid_codes` · `hreflang_to_noindex` · `hreflang_to_broken` · `hreflang_conflicts_lang_attr`
 
 #### 🔗 Canonical health
 `canonical_chain_depth` · `canonical_to_relative` · `canonical_to_redirect` · `canonical_outside_head` · `bad_canonical`
@@ -305,13 +305,13 @@ Article · Product · Recipe · FAQPage · BreadcrumbList · Event · JobPosting
 `internal_nofollow_outlinks` · `nofollow_only_inbound` · `follow_and_nofollow_mixed` · `orphan_pages`
 
 #### 🖼️ Image performance + CLS
-`lazy_load_attr_missing` · `srcset_missing` · `image_dimensions_missing` · `next_gen_image_format` · `image_oversized_kb` · `missing_alt_pages` · `broken_img_pages`
+`lazy_load_attr_missing` · `srcset_missing` · `image_dimensions_missing` · `next_gen_image_format` · `missing_alt_pages` · `broken_img_pages`
 
 #### 📐 HTML structure
 `html_over_2mb` · `noscript_in_head` · `broken_or_invalid_html` · `dom_size_excessive` · `lorem_ipsum_detected`
 
 #### ♿ Accessibility / metadata
-`iframes_present` · `iframe_missing_title` · `missing_favicon` · `missing_html_lang` · `invalid_html_lang` · `missing_charset` · `missing_viewport`
+`iframes_present` · `iframe_missing_title` · `missing_favicon` · `missing_viewport`
 
 #### 🪤 Crawl-budget killers
 `spider_trap_calendar` · `url_session_id_high_entropy` · `faceted_url_explosion`
@@ -418,6 +418,21 @@ Agent: → unzips, reads per-page.csv (filters status_4xx OR status_5xx)
 ---
 
 ## 🛣️ Roadmap
+
+### Hosted Sitewalk (ChatGPT and the remote MCP server)
+
+| | Status |
+|---|:---:|
+| **Site health score** with error, warning and notice tiers on every report | 🟡 Designed |
+| **Audit compare**: new and fixed issues since your last audit | 🟡 Designed |
+| **AI crawler access**: GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot and Google-Extended rules in robots.txt, plus llms.txt | 🟡 Planned |
+| **Google Search Console and GA4 connect**: sign in through Sitewalk once, then issues are ranked by your real clicks, impressions and traffic | 🟡 Planned |
+| **Connect guide**: step by step setup for Search Console, GA4 and every assistant | 🟡 Planned |
+| **Scheduled re-audits with email reminders**: a fresh audit on your schedule, and an email when new issues appear | 🟡 Planned |
+| **AI search visibility tracking**: whether AI assistants mention and cite your site, tracked over time | 🟡 Planned |
+| **WordPress sites**: when the crawl detects WordPress, the report points to [RankReady](https://hostmy.blog/plugins/rankready/) for AI SEO fixes inside WordPress | 🟡 Planned |
+
+### Self-hosted engine (this repository)
 
 | | Status |
 |---|:---:|
