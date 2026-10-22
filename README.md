@@ -113,7 +113,7 @@ The sections below cover the **self-hosted** engine (repository formerly `librec
 
 ## 🤔 Don't know what an MCP is? Read this 30-second explainer
 
-> **Model Context Protocol (MCP)** is the open standard that lets AI assistants like Claude, Cursor, or Codex call external tools. Think of it as "USB for AI assistants" — you plug a tool in, the AI can use it. Sitewalk is one of those tools. Once installed, you just *ask* your AI assistant to audit a site, and it does. No GUI. No dashboard. No exports.
+> **Model Context Protocol (MCP)** is the open standard that lets AI assistants like Claude, Cursor, or Codex call external tools. Think of it as "USB for AI assistants": you plug a tool in, the AI can use it. Sitewalk is one of those tools. Once installed, you just *ask* your AI assistant to audit a site, and it does. No GUI. No dashboard. No exports.
 
 **New to all this?**
 - Don't have Claude Code yet? → [Install Claude Code](https://docs.anthropic.com/claude-code) (free for individuals).
@@ -125,7 +125,7 @@ The sections below cover the **self-hosted** engine (repository formerly `librec
 ## 🪄 The whole pitch in 4 lines
 
 ```
-You:    Audit https://acme.com — full site, no caps, give me the zip
+You:    Audit https://acme.com, full site, no caps, give me the zip
 Agent:  → librecrawl_start_chunked_audit · polls until done · saves zip locally
 You:    Show me broken pages + broken external links + hreflang errors
 Agent:  → reads CSVs, prints filtered tables. Server already forgot the audit.
@@ -145,22 +145,22 @@ librecrawl_start_chunked_audit(url="https://yoursite.com")
 
 gets a **full end-to-end audit by default**:
 
-- **Every page** — entire sitemap crawled, including orphan pages not linked from the homepage
-- **Every page's text** — readability, AI-tells, boilerplate analyzed word-by-word
-- **Every outbound link** — every domain (yours, third-party, social, CDN) HTTP-validated for broken links
-- **No silent dropping** — per-page checks + link validation cover 100% of pages; the report states exactly what was covered
-- **Heavy sites safe** — 4–5 MB pages crawl fine; Screaming-Frog-grade politeness never overloads the origin
-- **Zero history** — the server forgets the entire audit the moment you download the zip; re-scan anytime, nothing persists
+- **Every page**: entire sitemap crawled, including orphan pages not linked from the homepage
+- **Every page's text**: readability, AI-tells, boilerplate analyzed word-by-word
+- **Every outbound link**: every domain (yours, third-party, social, CDN) HTTP-validated for broken links
+- **No silent dropping**: per-page checks + link validation cover 100% of pages; the report states exactly what was covered
+- **Heavy sites safe**: 4 to 5 MB pages crawl fine; polite crawling never overloads the origin
+- **Zero history**: the server forgets the entire audit the moment you download the zip; re-scan anytime, nothing persists
 
 Verified on real production sites: 1,942-page and 709-page WordPress sites, full coverage, origins healthy throughout.
 
-> **Note:** runs **one audit at a time** (single-tenant backend). For team use, queue audits sequentially — concurrent multi-audit routing is on the roadmap.
+> **Note:** runs **one audit at a time** (single-tenant backend). For team use, queue audits sequentially: concurrent multi-audit routing is on the roadmap.
 
 ---
 
 ## 🔥 Why this exists
 
-There are great desktop SEO crawlers (you know the ones). There are great cloud SEO suites. **There was no AI-native crawler.** Sitewalk fills that gap with five things no comparable open-source MCP server does:
+There are great desktop SEO crawlers and great cloud SEO suites. Sitewalk adds five things:
 
 ### ⚡ It runs **inside your AI assistant**
 
@@ -176,9 +176,9 @@ Cloudflare, Akamai, DataDome, Imperva, and PerimeterX challenge pages are served
 
 ### 🤖 An **AIMD controller** tunes crawl delay live
 
-Additive-Increase / Multiplicative-Decrease — the same algorithm TCP congestion control uses. Error rate > 10% → halve chunk, double delay. p95 latency > 1.5× target → 1.5× delay. Clean signals → additive decrease. **Polite by construction. No rate-limit blow-ups. No manual tuning.** Respects `robots.txt` `Crawl-Delay` floor.
+Additive-Increase / Multiplicative-Decrease: the same algorithm TCP congestion control uses. Error rate > 10% → halve chunk, double delay. p95 latency > 1.5× target → 1.5× delay. Clean signals → additive decrease. **Polite by construction. No rate-limit blow-ups. No manual tuning.** Respects `robots.txt` `Crawl-Delay` floor.
 
-### 🧹 **Ephemeral by design** — the agency-safe default
+### 🧹 **Ephemeral by design**: the agency-safe default
 
 Once you download the zip, the server deletes the session row, every artifact file on disk, AND the upstream LibreCrawl crawl record. **Per-audit server footprint after cleanup: 0 bytes, 0 rows.** Auditing 50 client sites? Zero data persists where another operator could see it.
 
@@ -208,7 +208,7 @@ You don't need to be. If you can:
 
 </details>
 
-> **Three ways to run:** the **one-liner** above (guided installer) · **[Docker](#-run-the-full-stack-with-docker-recommended-for-self-hosting)** (full stack, one command — best for self-hosting/VPS) · **[manual](#-manual-install)** (Python venv + your own backend). New here? Start with the one-liner.
+> **Three ways to run:** the **one-liner** above (guided installer) · **[Docker](#-run-the-full-stack-with-docker-recommended-for-self-hosting)** (full stack, one command: best for self-hosting/VPS) · **[manual](#-manual-install)** (Python venv + your own backend). New here? Start with the one-liner.
 
 ### 🐳 Run the full stack with Docker (recommended for self-hosting)
 
@@ -222,7 +222,7 @@ docker compose up --build          # MCP at http://127.0.0.1:5081/mcp
 
 The `mcp` service waits for LibreCrawl to report healthy before it starts. First build takes a few minutes (LibreCrawl pulls Chromium for JS rendering). Audit zips land in `./reports`. Full knobs in **[docs/CONFIGURATION.md](docs/CONFIGURATION.md)**.
 
-Add to your client config (Claude Desktop / Code — HTTP transport):
+Add to your client config (Claude Desktop / Code: HTTP transport):
 
 ```json
 {
@@ -277,7 +277,7 @@ Add to your client config (Claude Desktop example):
 `missing_hsts` · `missing_csp` · `missing_x_frame_options` · `missing_x_content_type_options` · `missing_referrer_policy` · `x_robots_tag_vs_meta_mismatch` · `mixed_content`
 
 #### 🛡️ WAF / bot-block detection
-`bot_block_challenge_detected` — fingerprints **Cloudflare · Akamai · DataDome · Imperva · PerimeterX**
+`bot_block_challenge_detected`: fingerprints **Cloudflare · Akamai · DataDome · Imperva · PerimeterX**
 
 #### 🗺️ Sitemap & robots
 `sitemap_url_noindex` · `sitemap_url_3xx` · `sitemap_url_disallowed_in_robots` · `sitemap_contains_canonicalized` · `sitemap_over_50k_urls` · `sitemap_over_50mb`
@@ -292,7 +292,7 @@ Add to your client config (Claude Desktop example):
 `redirect_chains` · `meta_refresh_redirect` · `js_redirect` · `http_refresh_redirect`
 
 #### 🏷️ Schema.org (16 types)
-Article · Product · Recipe · FAQPage · BreadcrumbList · Event · JobPosting · VideoObject · HowTo · Organization · LocalBusiness · Person · Review · AggregateRating · Course · NewsArticle — validates **schema.org spec** AND **Google Rich Results** required fields. Handles `@graph` (Yoast / Rank Math / WPRM).
+Article · Product · Recipe · FAQPage · BreadcrumbList · Event · JobPosting · VideoObject · HowTo · Organization · LocalBusiness · Person · Review · AggregateRating · Course · NewsArticle: validates **schema.org spec** AND **Google Rich Results** required fields. Handles `@graph` (Yoast / Rank Math / WPRM).
 
 </td>
 <td valign="top" width="50%">
@@ -328,15 +328,15 @@ Article · Product · Recipe · FAQPage · BreadcrumbList · Event · JobPosting
 </tr>
 </table>
 
-**🔗 Every outbound URL HEAD/GET-validated** into 17 status classes — `ok` · `redirect` · `forbidden` · `not_found` · `timeout` · `dns_error` · `ssl_error` · `connection_refused` · etc. Per-target: final URL after redirects, source pages, anchor text, response time, server header.
+**🔗 Every outbound URL HEAD/GET-validated** into 17 status classes: `ok` · `redirect` · `forbidden` · `not_found` · `timeout` · `dns_error` · `ssl_error` · `connection_refused` · etc. Per-target: final URL after redirects, source pages, anchor text, response time, server header.
 
-**📈 GSC merge** — pull Google Search Console data, call `librecrawl_merge_gsc_data(crawl_id, gsc_data)`. URLs normalised before joining. Emits **4 extra CSVs**: `per-page-with-gsc` · `gsc-winners` · `gsc-losers` (high impr + CTR <2%) · `gsc-quick-wins` (position 11–20 + impr ≥100).
+**📈 GSC merge**: pull Google Search Console data, call `librecrawl_merge_gsc_data(crawl_id, gsc_data)`. URLs normalised before joining. Emits **4 extra CSVs**: `per-page-with-gsc` · `gsc-winners` · `gsc-losers` (high impr + CTR <2%) · `gsc-quick-wins` (position 11 to 20 + impr ≥100).
 
 ---
 
 ## 🆚 Feature comparison to other on-site SEO crawlers
 
-> This is a factual feature comparison. Prices were checked at publication and may have changed — see each vendor's site for current pricing. Brand names belong to their respective owners.
+> This is a factual feature comparison. Prices were checked at publication and may have changed: see each vendor's site for current pricing. Brand names belong to their respective owners.
 
 | Capability | Desktop crawler (Screaming Frog SEO Spider™)<sup>1</sup> | Desktop+cloud crawler (Sitebulb™)<sup>2</sup> | Cloud site-audit (Ahrefs™)<sup>3</sup> | **Sitewalk (self-hosted)** |
 |---|:---:|:---:|:---:|:---:|
@@ -383,7 +383,7 @@ Single zip, 9 files:
 | `sitemap-recon.csv` | Sitemap-vs-crawl diff |
 | `external-links.csv` | Every outbound URL + status |
 | `content-audit.csv` | Per-page readability + AI-tells |
-| `extended-checks.csv` | 1 row per (URL × check × severity × detail) — all 50+ checks |
+| `extended-checks.csv` | 1 row per (URL × check × severity × detail): all 50+ checks |
 | `schema-validation.csv` | JSON-LD findings per page against schema.org and Google rich-result required fields |
 
 ---
@@ -391,7 +391,7 @@ Single zip, 9 files:
 ## 📖 Your first audit
 
 ```text
-You:   Audit https://example.com — full site, no caps
+You:   Audit https://example.com, full site, no caps
 
 Agent: → librecrawl_start_chunked_audit(url=..., total_max_pages=10000)
          returns session_id in <2s
@@ -423,12 +423,12 @@ Agent: → unzips, reads per-page.csv (filters status_4xx OR status_5xx)
 
 | | Status |
 |---|:---:|
-| **JavaScript rendering** (Playwright headless, DOM diff vs raw HTML) — catches SPA / React / Next.js apps | 🟡 Designed |
-| **Core Web Vitals from CrUX** — real-user 28-day field data, not just lab PSI | 🟡 Designed |
-| **axe-core accessibility audit** — contrast, ARIA, focus order, alt-text quality | 🟡 Planned |
+| **JavaScript rendering** (Playwright headless, DOM diff vs raw HTML): catches SPA / React / Next.js apps | 🟡 Designed |
+| **Core Web Vitals from CrUX**: real-user 28-day field data, not just lab PSI | 🟡 Designed |
+| **axe-core accessibility audit**: contrast, ARIA, focus order, alt-text quality | 🟡 Planned |
 | **White-label PDF theming** (`--brand-config` for agencies) | 🟡 Planned |
-| **Diff mode** — audit A vs audit B, "what regressed since last week?" | 🟡 Planned |
-| **Webhook on completion** (Slack / Discord) — ping when long crawls finish | 🟡 Planned |
+| **Diff mode**: audit A vs audit B, "what regressed since last week?" | 🟡 Planned |
+| **Webhook on completion** (Slack / Discord): ping when long crawls finish | 🟡 Planned |
 
 > **Not planned:** keyword research, backlink analysis, SERP tracking. Those are different problems with different MCP servers (DataForSEO, etc.). This tool is laser-focused on **technical on-site SEO crawling**.
 
@@ -438,7 +438,7 @@ Agent: → unzips, reads per-page.csv (filters status_4xx OR status_5xx)
 
 ## 🔎 How it works
 
-One audit, start to finished zip — every step is an MCP tool your agent calls:
+One audit, start to finished zip: every step is an MCP tool your agent calls:
 
 ```mermaid
 sequenceDiagram
@@ -446,7 +446,7 @@ sequenceDiagram
     participant Agent as AI assistant
     participant MCP as librecrawl-mcp
     participant LC as LibreCrawl engine
-    You->>Agent: "Audit https://acme.com — full site, give me the zip"
+    You->>Agent: "Audit https://acme.com, full site, give me the zip"
     Agent->>MCP: librecrawl_start_chunked_audit(url)
     MCP->>LC: start crawl on a background worker
     MCP-->>Agent: session_id (returned in < 2s)
@@ -476,7 +476,7 @@ flowchart TD
     subgraph MCP["🕷️ Sitewalk self-hosted MCP: server.py, FastMCP, 38 tools"]
         direction TB
         B["runner.py<br/>background worker thread + AIMD controller"]
-        C["state.py<br/>SQLite WAL — session state"]
+        C["state.py<br/>SQLite WAL: session state"]
         D["external_links · schema · content_audit<br/>extended_checks · sitemap_fill · pdf_report"]
         E["libreclient.py<br/>typed wrapper to the upstream API"]
         B --> C
@@ -492,7 +492,7 @@ Full component walk-through: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
 
 ## ⚙️ Configuration
 
-All environment variables are optional — the defaults just work. Set them via your shell, `docker compose`, or your MCP client config.
+All environment variables are optional: the defaults just work. Set them via your shell, `docker compose`, or your MCP client config.
 
 | Env var | Default | Purpose |
 |---|---|---|
@@ -522,16 +522,16 @@ All environment variables are optional — the defaults just work. Set them via 
 - `librecrawl_audit_artifacts` · `librecrawl_audit_pdf` · `librecrawl_report_content`
 
 **Specialist:**
-- `librecrawl_external_links_audit` — re-run external-link validation on a specific crawl
+- `librecrawl_external_links_audit`: re-run external-link validation on a specific crawl
 - `librecrawl_schema_validate` · `librecrawl_schema_check` · `librecrawl_schema_audit`
-- `librecrawl_merge_gsc_data` · `librecrawl_append_gsc_section` — Google Search Console data merge
-- `librecrawl_pagespeed` · `librecrawl_pagespeed_audit` · `librecrawl_pagespeed_audit_all_crawl_pages` — PageSpeed Insights
-- `librecrawl_site_check` — instant site-level check
+- `librecrawl_merge_gsc_data` · `librecrawl_append_gsc_section`: Google Search Console data merge
+- `librecrawl_pagespeed` · `librecrawl_pagespeed_audit` · `librecrawl_pagespeed_audit_all_crawl_pages`: PageSpeed Insights
+- `librecrawl_site_check`: instant site-level check
 - `librecrawl_internal_links_analysis` · `librecrawl_filter_issues` · `librecrawl_visualization_data`
 
 **Maintenance:**
-- `librecrawl_wipe_everything` — nuclear reset to zero
-- `librecrawl_brain_purge_audit` — purge a single audit
+- `librecrawl_wipe_everything`: nuclear reset to zero
+- `librecrawl_brain_purge_audit`: purge a single audit
 
 **Legacy (kept for backwards compat, avoid for big sites):**
 - `librecrawl_audit` · `librecrawl_full_audit_strict` · `librecrawl_generate_report` · `librecrawl_export_results` · `librecrawl_get_status` · `librecrawl_get_settings` · `librecrawl_list_crawls` · `librecrawl_start_crawl` · `librecrawl_stop_crawl` · `librecrawl_pause_crawl` · `librecrawl_resume_crawl` · `librecrawl_resume_from_crawl_id`
@@ -548,9 +548,9 @@ Deeper guides live in [`docs/`](docs/):
 |---|---|
 | **[Getting Started](docs/GETTING-STARTED.md)** | Install every way (one-liner · Docker · manual), per-client config for Claude Code/Desktop, Cursor, Windsurf, Codex, Continue.dev, and your first audit end-to-end |
 | **[Configuration](docs/CONFIGURATION.md)** | Every environment variable, HTTP vs stdio transport, ports, reports directory, PageSpeed key |
-| **[Tools Reference](docs/TOOLS.md)** | All 38 MCP tools — signatures, arguments, when to use each |
+| **[Tools Reference](docs/TOOLS.md)** | All 38 MCP tools: signatures, arguments, when to use each |
 | **[Architecture](docs/ARCHITECTURE.md)** | How the wrapper, background worker, AIMD controller, and LibreCrawl backend fit together |
-| **[Troubleshooting](docs/TROUBLESHOOTING.md)** | Common errors and fixes — backend unreachable, empty audits, PDF/WeasyPrint, Docker health, big-site tuning |
+| **[Troubleshooting](docs/TROUBLESHOOTING.md)** | Common errors and fixes: backend unreachable, empty audits, PDF/WeasyPrint, Docker health, big-site tuning |
 
 ---
 
@@ -564,10 +564,10 @@ Deeper guides live in [`docs/`](docs/):
 
 ## 🙏 Credits
 
-- **[LibreCrawl](https://github.com/PhialsBasement/LibreCrawl)** — the upstream open-source crawler this MCP server wraps. MIT. **Please go star them — this project would not exist without that work.**
-- **[Anthropic Model Context Protocol](https://modelcontextprotocol.io)** — the protocol this server speaks
-- **[WeasyPrint](https://weasyprint.org/)** — Markdown → HTML → PDF rendering
-- **[FastMCP](https://github.com/jlowin/fastmcp)** — the Python MCP server framework
+- **[LibreCrawl](https://github.com/PhialsBasement/LibreCrawl)**: the upstream open-source crawler this MCP server wraps. MIT. **Please go star them: this project would not exist without that work.**
+- **[Anthropic Model Context Protocol](https://modelcontextprotocol.io)**: the protocol this server speaks
+- **[WeasyPrint](https://weasyprint.org/)**: Markdown → HTML → PDF rendering
+- **[FastMCP](https://github.com/jlowin/fastmcp)**: the Python MCP server framework
 
 ---
 
