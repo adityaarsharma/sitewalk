@@ -4,7 +4,7 @@
 # Self-hosted SEO crawler — MCP server for any AI agent
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/adityaarsharma/librecrawl-technical-seo-audit-mcp/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/adityaarsharma/sitewalk/main/install.sh | bash
 #
 # Or with a custom install dir:
 #   INSTALL_DIR=/opt/librecrawl-technical-seo-audit-mcp bash install.sh
@@ -207,7 +207,7 @@ mkdir -p "${MCP_DIR}"
 # server.py is the FastMCP entrypoint; the others are imported by it.
 # Server-side instructions + ephemeral mode + 38 tools all need these files.
 info "Downloading MCP server modules from GitHub (10 files)..."
-BASE_URL="https://raw.githubusercontent.com/adityaarsharma/librecrawl-technical-seo-audit-mcp/main"
+BASE_URL="https://raw.githubusercontent.com/adityaarsharma/sitewalk/main"
 for f in server.py state.py libreclient.py runner.py external_links.py \
          content_audit.py extended_checks.py schema_validator.py \
          sitemap_fill.py pdf_report.py; do

@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Common problems and fixes. If none of these match, [open an issue](https://github.com/adityaarsharma/librecrawl-technical-seo-audit-mcp/issues/new) with the failing tool call and any server logs.
+Common problems and fixes. If none of these match, [open an issue](https://github.com/adityaarsharma/sitewalk/issues/new) with the failing tool call and any server logs.
 
 ## The MCP starts but every audit fails to connect
 
