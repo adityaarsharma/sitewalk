@@ -8,7 +8,7 @@
 
 **Ask your AI assistant to audit a website. Get the technical SEO problems back, ranked by impact, with a plain fix for each.**
 
-**[Use it in ChatGPT, no install](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a)** · **[Add to Cursor in one click](https://cursor.com/install-mcp?name=sitewalk&config=eyJ1cmwiOiJodHRwczovL2F1ZGl0LmFkaXR5YWFyc2hhcm1hLmNvbS9tY3AifQ==)** · **[Self-host with Docker](#-run-the-full-stack-with-docker-recommended-for-self-hosting)** · [Claude Code plugin](#-claude-code-plugin-and-the-seo-growth-agent) · [audit.adityaarsharma.com](https://audit.adityaarsharma.com/)
+**[Use it in ChatGPT, no install](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a)** · **[Self-host with Docker](#-run-the-full-stack-with-docker-recommended-for-self-hosting)** · [Claude Code plugin](#-claude-code-plugin-and-the-seo-growth-agent) · [audit.adityaarsharma.com](https://audit.adityaarsharma.com/)
 
 Coming soon to Grok.
 
@@ -21,7 +21,6 @@ Coming soon to Grok.
 
 [![ChatGPT](https://img.shields.io/badge/ChatGPT-plugin-10A37F?style=flat-square)](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a)
 [![Works With](https://img.shields.io/badge/Claude%20Code-plugin-D97757?style=flat-square)](#-claude-code-plugin-and-the-seo-growth-agent)
-[![Works With](https://img.shields.io/badge/Cursor-supported-000000?style=flat-square)](https://cursor.com/install-mcp?name=sitewalk&config=eyJ1cmwiOiJodHRwczovL2F1ZGl0LmFkaXR5YWFyc2hhcm1hLmNvbS9tY3AifQ==)
 [![Works With](https://img.shields.io/badge/Claude%20Desktop-supported-D97757?style=flat-square)](https://claude.ai/download)
 [![Works With](https://img.shields.io/badge/OpenAI%20Codex-supported-10A37F?style=flat-square)](https://github.com/openai/codex)
 [![Works With](https://img.shields.io/badge/Windsurf-supported-00C2A8?style=flat-square)](https://codeium.com/windsurf)
@@ -43,18 +42,18 @@ Audit https://yoursite.com for technical SEO problems
 
 Sitewalk crawls the site, and ChatGPT brings back the problems ranked by impact, each with a plain fix and example pages, plus a link to the full report (CSV and PDF). Sign in once with your email. The free account gives 3 audits a month: up to 50 pages for any site, up to 500 pages for a site you verify you own.
 
-The same hosted server works in any MCP client that supports remote servers with OAuth:
+ChatGPT is the main way in. The same hosted server also answers any MCP client that supports remote servers with OAuth:
 
 | Client | How to connect |
 |---|---|
 | **ChatGPT** | [Open the Sitewalk plugin](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a) |
-| **Cursor** | [Add to Cursor](https://cursor.com/install-mcp?name=sitewalk&config=eyJ1cmwiOiJodHRwczovL2F1ZGl0LmFkaXR5YWFyc2hhcm1hLmNvbS9tY3AifQ==) (deeplink), or add `https://audit.adityaarsharma.com/mcp` under Settings, MCP |
+| **Grok** | Coming soon |
 | **Claude Code** | `/plugin marketplace add adityaarsharma/sitewalk` then `/plugin install sitewalk@sitewalk`, or `claude mcp add --transport http sitewalk https://audit.adityaarsharma.com/mcp` |
 | **Any MCP client** | Remote URL `https://audit.adityaarsharma.com/mcp` (streamable HTTP, OAuth sign-in by email) |
 
 Hosted tools: `start_site_audit`, `get_audit_status`, `get_audit_report`.
 
-What sets the hosted route apart: you start the crawl from the chat itself, with nothing to install and no earlier audit needed. Bigger hosted crawls are coming with Pro.
+What sets the hosted route apart: you start the crawl from the chat itself, with nothing to install and no earlier audit needed. Bigger hosted crawls are coming with **Pro: USD 9 a month**, 50 audits and 20,000 pages a month, up to 1,000 pages per audit on a site you verify. Billed monthly, no yearly plan, and the free account stays free. [Join the waitlist](https://audit.adityaarsharma.com/#waitlist).
 
 ### 2. Self-hosted: this repository
 
@@ -62,11 +61,11 @@ The full open-source engine and MCP server: no page cap when self-hosted (your o
 
 ### Hosted or self-hosted
 
-| | Hosted (ChatGPT, Cursor, Claude) | Self-hosted (this repo) |
+| | Hosted (ChatGPT) | Self-hosted (this repo) |
 |---|---|---|
 | Setup | None. Sign in with email | Docker or the one-line installer |
 | Pages per audit | 50 for any site, 500 for a site you verify | No cap |
-| Audits | 3 a month on the free account | As many as your server can run |
+| Audits | 3 a month on the free account, 50 a month on Pro (waitlist) | As many as your server can run |
 | Checks | The core technical checks, ranked by impact | 50+ checks (extended checks), extended CSVs |
 | Output | Ranked list in chat, full report with CSV and PDF | Zip with a PDF and 7 CSVs |
 | Data | Reports stay private to your account | Ephemeral: wiped after you download |
@@ -76,7 +75,7 @@ The full open-source engine and MCP server: no page cap when self-hosted (your o
 
 ## 🧭 Claude Code plugin and the SEO growth agent
 
-This repository is also a Claude Code and Cursor plugin marketplace. The `sitewalk` plugin connects the hosted Sitewalk server and adds an **SEO growth agent**: it audits a site, ranks the fixes by impact, writes a fix plan for your stack (WordPress, Next.js, Shopify or static), offers to apply it, then re-checks after you ship.
+This repository is also a Claude Code plugin marketplace. The `sitewalk` plugin connects the hosted Sitewalk server and adds an **SEO growth agent**: it audits a site, ranks the fixes by impact, writes a fix plan for your stack (WordPress, Next.js, Shopify or static), offers to apply it, then re-checks after you ship.
 
 ```
 /plugin marketplace add adityaarsharma/sitewalk
@@ -117,8 +116,7 @@ The sections below cover the **self-hosted** engine (repository formerly `librec
 
 **New to all this?**
 - Don't have Claude Code yet? → [Install Claude Code](https://docs.anthropic.com/claude-code) (free for individuals).
-- Prefer Cursor? → [Get Cursor](https://cursor.com).
-- Already have one of those? → Skip to [Install in 60s](#-install-in-60-seconds).
+- Already have one? → Skip to [Install in 60s](#-install-in-60-seconds).
 
 ---
 
@@ -267,7 +265,7 @@ Add to your client config (Claude Desktop example):
 
 ## 🚀 50+ checks every audit
 
-> These 50+ checks are the extended checks in the self-hosted build. The hosted ChatGPT and Cursor version runs the core technical checks.
+> These 50+ checks are the extended checks in the self-hosted build. The hosted ChatGPT version runs the core technical checks.
 
 <table>
 <tr>
