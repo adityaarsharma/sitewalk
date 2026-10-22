@@ -1,10 +1,10 @@
 # Tools Reference
 
-The server exposes **38 MCP tools**. In normal use you never call these by hand — your AI assistant picks them from your plain-language request. This reference is for understanding what's available and for power users scripting against the MCP directly.
+The server exposes **38 MCP tools**. In normal use you never call these by hand: your AI assistant picks them from your plain-language request. This reference is for understanding what's available and for power users scripting against the MCP directly.
 
 > Each tool's exact input schema is advertised over MCP (your client can list it). Signatures below show the arguments you'll actually reach for; optional/advanced parameters are summarized in prose.
 
-## Chunked audit — the 95% path
+## Chunked audit: the 95% path
 
 This is the modern flow: start → poll → zip. It never times out and survives client/process restarts.
 
@@ -36,7 +36,7 @@ This is the modern flow: start → poll → zip. It never times out and survives
 | `librecrawl_pagespeed_audit` | PSI audit for a set of URLs. |
 | `librecrawl_pagespeed_audit_all_crawl_pages` | Run PSI across every page in a crawl. |
 | `librecrawl_site_check` | Fast site-level sanity check (robots, sitemap, reachability). |
-| `librecrawl_internal_links_analysis` | Internal linking graph — orphans, nofollow mix, inbound counts. |
+| `librecrawl_internal_links_analysis` | Internal linking graph: orphans, nofollow mix, inbound counts. |
 | `librecrawl_filter_issues` | Filter a crawl's issues by type/severity. |
 | `librecrawl_visualization_data` | Emit structured data for building crawl visualizations. |
 
@@ -44,11 +44,11 @@ This is the modern flow: start → poll → zip. It never times out and survives
 
 | Tool | Purpose |
 |---|---|
-| `librecrawl_wipe_everything` | Nuclear reset — clears all sessions, artifacts, and upstream crawl records back to zero state. |
+| `librecrawl_wipe_everything` | Nuclear reset: clears all sessions, artifacts, and upstream crawl records back to zero state. |
 | `librecrawl_brain_purge_audit` | Purge a single audit's data. |
 
 ## Legacy (kept for backwards compatibility)
 
-Prefer the chunked-audit tools above — the legacy synchronous tools can time out on large sites.
+Prefer the chunked-audit tools above: the legacy synchronous tools can time out on large sites.
 
 `librecrawl_audit` · `librecrawl_full_audit_strict` · `librecrawl_generate_report` · `librecrawl_export_results` · `librecrawl_get_status` · `librecrawl_get_settings` · `librecrawl_list_crawls` · `librecrawl_start_crawl` · `librecrawl_stop_crawl` · `librecrawl_pause_crawl` · `librecrawl_resume_crawl` · `librecrawl_resume_from_crawl_id`

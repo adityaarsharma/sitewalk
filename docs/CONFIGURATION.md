@@ -1,6 +1,6 @@
 # Configuration
 
-Everything is configured through environment variables. All are optional — the defaults work for a standard local setup. Set them via your shell, `docker compose`, or the `env` block of your MCP client config.
+Everything is configured through environment variables. All are optional: the defaults work for a standard local setup. Set them via your shell, `docker compose`, or the `env` block of your MCP client config.
 
 ## Environment variables
 
@@ -12,7 +12,7 @@ Everything is configured through environment variables. All are optional — the
 | `MCP_PORT` | `5081` | Port the MCP server listens on (HTTP transport). |
 | `MCP_TRANSPORT` | `http` | `http` for streamable HTTP (long-lived service), or `stdio` for client-launched processes. |
 | `REPORTS_DIR` | `~/librecrawl-reports` | Directory where audit zips are written. Docker mounts this to `./reports`. |
-| `LIBRECRAWL_UPSTREAM_DB` | `~/.librecrawl/upstream/users.db` | Path to LibreCrawl's SQLite file, used for orphan-page and cleanup checks. If the file isn't reachable, those specific checks skip gracefully — the core audit is unaffected. |
+| `LIBRECRAWL_UPSTREAM_DB` | `~/.librecrawl/upstream/users.db` | Path to LibreCrawl's SQLite file, used for orphan-page and cleanup checks. If the file isn't reachable, those specific checks skip gracefully: the core audit is unaffected. |
 | `PAGESPEED_API_KEY` | unset | Google PageSpeed Insights API key. Enables the `librecrawl_pagespeed*` tools and raises PSI rate limits (25k/day). |
 
 ## Transports
@@ -32,7 +32,7 @@ The server runs a streamable-HTTP endpoint at `http://<MCP_HOST>:<MCP_PORT>/mcp`
 }
 ```
 
-To expose the endpoint beyond localhost, set `MCP_HOST=0.0.0.0` **and** put it behind a reverse proxy with authentication — the server itself does not add auth.
+To expose the endpoint beyond localhost, set `MCP_HOST=0.0.0.0` **and** put it behind a reverse proxy with authentication: the server itself does not add auth.
 
 ### stdio
 

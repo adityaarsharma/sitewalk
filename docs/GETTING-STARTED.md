@@ -3,9 +3,9 @@
 This guide takes you from nothing to a finished SEO audit zip. Pick an install path, wire up your MCP client, run your first audit.
 
 - [Install](#install)
-  - [Option A — one-liner installer](#option-a--one-liner-installer)
-  - [Option B — Docker (full stack)](#option-b--docker-full-stack)
-  - [Option C — manual](#option-c--manual)
+  - [Option A: one-liner installer](#option-a--one-liner-installer)
+  - [Option B: Docker (full stack)](#option-b--docker-full-stack)
+  - [Option C: manual](#option-c--manual)
 - [Connect your MCP client](#connect-your-mcp-client)
 - [Your first audit](#your-first-audit)
 - [Where the report goes](#where-the-report-goes)
@@ -16,7 +16,7 @@ This guide takes you from nothing to a finished SEO audit zip. Pick an install p
 
 The server is a thin MCP wrapper (`server.py`) that drives a separate **LibreCrawl** engine. However you install, you end up with two things running: the engine on port `5080` and the MCP on port `5081`.
 
-### Option A — one-liner installer
+### Option A: one-liner installer
 
 The fastest path. Handles Python, the Dockerized LibreCrawl backend, and your client config.
 
@@ -24,9 +24,9 @@ The fastest path. Handles Python, the Dockerized LibreCrawl backend, and your cl
 curl -fsSL https://raw.githubusercontent.com/adityaarsharma/sitewalk/main/install.sh | bash
 ```
 
-It asks three questions — target client, optional Google PageSpeed key, optional GSC integration — then writes a ready-to-use MCP entry into your Claude / Cursor / Codex / Windsurf config.
+It asks three questions: target client, optional Google PageSpeed key, optional GSC integration: then writes a ready-to-use MCP entry into your Claude / Cursor / Codex / Windsurf config.
 
-### Option B — Docker (full stack)
+### Option B: Docker (full stack)
 
 Best for self-hosting or a VPS. Brings up the LibreCrawl engine **and** the MCP together, health-gated, in one command.
 
@@ -43,7 +43,7 @@ docker compose up --build
 
 Stop with `docker compose down` (add `-v` to also drop the shared data volume).
 
-### Option C — manual
+### Option C: manual
 
 Python 3.10+, plus a LibreCrawl backend you run yourself (the Docker path above is the easiest way to get one).
 
@@ -63,7 +63,7 @@ By default the MCP serves HTTP on `127.0.0.1:5081`. Set `MCP_TRANSPORT=stdio` to
 
 There are two transports. **HTTP** (default) is best when the MCP runs as a long-lived service (Docker, PM2, a VPS). **stdio** is best when your client launches the process itself.
 
-### Claude Code / Claude Desktop — HTTP
+### Claude Code / Claude Desktop: HTTP
 
 ```json
 {
@@ -79,7 +79,7 @@ There are two transports. **HTTP** (default) is best when the MCP runs as a long
 - Claude Desktop config: `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
 - Claude Code: add via your project/user MCP config, then restart the session.
 
-### Cursor / Windsurf / Codex / Continue.dev — stdio
+### Cursor / Windsurf / Codex / Continue.dev: stdio
 
 Run the server in stdio mode by launching it directly, with `MCP_TRANSPORT=stdio`:
 
@@ -109,7 +109,7 @@ After editing config, **fully restart the client** so it reconnects.
 Just ask your assistant in plain language. Under the hood it calls the tools:
 
 ```text
-You:   Audit https://example.com — full site, no caps
+You:   Audit https://example.com: full site, no caps
 
 Agent: → librecrawl_start_chunked_audit(url="https://example.com", total_max_pages=10000)
          returns a session_id in < 2s
@@ -126,7 +126,7 @@ You:   Show me broken pages + broken external links + hreflang errors
 Agent: → unzips, filters per-page.csv and external-links.csv, prints the tables
 ```
 
-You never call tools by hand — the agent picks them. See **[TOOLS.md](TOOLS.md)** for the full list.
+You never call tools by hand: the agent picks them. See **[TOOLS.md](TOOLS.md)** for the full list.
 
 ---
 

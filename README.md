@@ -57,7 +57,7 @@ What sets the hosted route apart: you start the crawl from the chat itself, with
 
 ### 2. Self-hosted: this repository
 
-The full open-source engine and MCP server: no page cap when self-hosted (your own server), 38 MCP tools, 50+ checks (self-hosted build), branded PDF plus CSVs, and nothing kept on the server after you download the zip. Runs on your own machine or server with Docker. Jump to [Install in 60 seconds](#-install-in-60-seconds).
+The full open-source engine and MCP server: no page cap when self-hosted (your own server), 38 MCP tools, 30+ checks (self-hosted build), branded PDF plus CSVs, and nothing kept on the server after you download the zip. Runs on your own machine or server with Docker. Jump to [Install in 60 seconds](#-install-in-60-seconds).
 
 ### Hosted or self-hosted
 
@@ -66,7 +66,7 @@ The full open-source engine and MCP server: no page cap when self-hosted (your o
 | Setup | None. Sign in with email | Docker or the one-line installer |
 | Pages per audit | 50 for any site, 500 for a site you verify | No cap |
 | Audits | 3 a month on the free account, 50 a month on Pro (waitlist) | As many as your server can run |
-| Checks | The core technical checks, ranked by impact | 50+ checks (extended checks), extended CSVs |
+| Checks | The core technical checks and an extra-checks pass, ranked by impact | 30+ checks (extended checks), extended CSVs |
 | Output | Ranked list in chat, full report with CSV and PDF | Zip with a PDF and 7 CSVs |
 | Data | Reports stay private to your account | Ephemeral: wiped after you download |
 | Crawler | SitewalkBot, obeys robots.txt, 1 page every 2 seconds | Your own IP and settings |
@@ -95,7 +95,7 @@ Then ask: `Run the SEO growth loop on https://yoursite.com`. The skill is in [`p
 - [One command = a complete audit](#-one-command--a-complete-audit-v220)
 - [Why this exists](#-why-this-exists)
 - [Install in 60 seconds](#-install-in-60-seconds): [one-liner](#-install-in-60-seconds) · [Docker](#-run-the-full-stack-with-docker-recommended-for-self-hosting) · [manual](#-manual-install)
-- [50+ checks every audit](#-50-checks-every-audit)
+- [30+ checks every audit](#-30-checks-every-audit)
 - [Feature comparison](#-feature-comparison-to-other-on-site-seo-crawlers)
 - [What every audit produces](#-what-every-audit-produces)
 - [Your first audit](#-your-first-audit)
@@ -129,7 +129,7 @@ You:    Show me broken pages + broken external links + hreflang errors
 Agent:  → reads CSVs, prints filtered tables. Server already forgot the audit.
 ```
 
-That's the product. **Your AI assistant runs a full technical SEO audit for you.** With the self-hosted build you get a branded PDF + 7 CSVs covering 50+ technical checks (the extended checks), ready to hand a client. The server wipes everything the moment you download.
+That's the product. **Your AI assistant runs a full technical SEO audit for you.** With the self-hosted build you get a branded PDF + 7 CSVs covering 30+ technical checks (the extended checks), ready to hand a client. The server wipes everything the moment you download.
 
 ---
 
@@ -263,16 +263,16 @@ Add to your client config (Claude Desktop example):
 
 ---
 
-## 🚀 50+ checks every audit
+## 🚀 30+ checks every audit
 
-> These 50+ checks are the extended checks in the self-hosted build. The hosted ChatGPT version runs the core technical checks.
+> These 30+ checks are the extended checks in the self-hosted build. The hosted ChatGPT version runs the core technical checks plus an extra-checks pass on every audit. That pass uses its own check names, so the hosted report labels differ from this list.
 
 <table>
 <tr>
 <td valign="top" width="50%">
 
 #### 🔒 Security & headers
-`missing_hsts` · `missing_csp` · `missing_x_frame_options` · `missing_x_content_type_options` · `missing_referrer_policy` · `x_robots_tag_vs_meta_mismatch` · `mixed_content`
+`missing_hsts_header` · `missing_csp_header` · `missing_x_frame_options` · `missing_x_content_type_options` · `missing_referrer_policy` · `x_robots_tag_vs_meta_mismatch` · `mixed_content`
 
 #### 🛡️ WAF / bot-block detection
 `bot_block_challenge_detected`: fingerprints **Cloudflare · Akamai · DataDome · Imperva · PerimeterX**
@@ -281,7 +281,7 @@ Add to your client config (Claude Desktop example):
 `sitemap_url_noindex` · `sitemap_url_3xx` · `sitemap_url_disallowed_in_robots` · `sitemap_contains_canonicalized` · `sitemap_over_50k_urls` · `sitemap_over_50mb`
 
 #### 🌍 Hreflang full audit
-`missing_return_tag` · `missing_self_reference` · `missing_x_default` · `invalid_codes` · `to_noindex` · `to_broken` · `conflicts_lang_attr`
+`hreflang_missing_return_tag` · `hreflang_missing_self_reference` · `hreflang_missing_x_default` · `hreflang_invalid_codes` · `hreflang_to_noindex` · `hreflang_to_broken` · `hreflang_conflicts_lang_attr`
 
 #### 🔗 Canonical health
 `canonical_chain_depth` · `canonical_to_relative` · `canonical_to_redirect` · `canonical_outside_head` · `bad_canonical`
@@ -305,13 +305,13 @@ Article · Product · Recipe · FAQPage · BreadcrumbList · Event · JobPosting
 `internal_nofollow_outlinks` · `nofollow_only_inbound` · `follow_and_nofollow_mixed` · `orphan_pages`
 
 #### 🖼️ Image performance + CLS
-`lazy_load_attr_missing` · `srcset_missing` · `image_dimensions_missing` · `next_gen_image_format` · `image_oversized_kb` · `missing_alt_pages` · `broken_img_pages`
+`lazy_load_attr_missing` · `srcset_missing` · `image_dimensions_missing` · `next_gen_image_format` · `missing_alt_pages` · `broken_img_pages`
 
 #### 📐 HTML structure
 `html_over_2mb` · `noscript_in_head` · `broken_or_invalid_html` · `dom_size_excessive` · `lorem_ipsum_detected`
 
 #### ♿ Accessibility / metadata
-`iframes_present` · `iframe_missing_title` · `missing_favicon` · `missing_html_lang` · `invalid_html_lang` · `missing_charset` · `missing_viewport`
+`iframes_present` · `iframe_missing_title` · `missing_favicon` · `missing_viewport`
 
 #### 🪤 Crawl-budget killers
 `spider_trap_calendar` · `url_session_id_high_entropy` · `faceted_url_explosion`
@@ -381,7 +381,7 @@ Single zip, 9 files:
 | `sitemap-recon.csv` | Sitemap-vs-crawl diff |
 | `external-links.csv` | Every outbound URL + status |
 | `content-audit.csv` | Per-page readability + AI-tells |
-| `extended-checks.csv` | 1 row per (URL × check × severity × detail): all 50+ checks |
+| `extended-checks.csv` | 1 row per (URL × check × severity × detail): all 30+ checks |
 | `schema-validation.csv` | JSON-LD findings per page against schema.org and Google rich-result required fields |
 
 ---
@@ -418,6 +418,21 @@ Agent: → unzips, reads per-page.csv (filters status_4xx OR status_5xx)
 ---
 
 ## 🛣️ Roadmap
+
+### Hosted Sitewalk (ChatGPT and the remote MCP server)
+
+| | Status |
+|---|:---:|
+| **Site health score** with error, warning and notice tiers on every report | 🟡 Designed |
+| **Audit compare**: new and fixed issues since your last audit | 🟡 Designed |
+| **AI crawler access**: GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot and Google-Extended rules in robots.txt, plus llms.txt | 🟡 Planned |
+| **Google Search Console and GA4 connect**: sign in through Sitewalk once, then issues are ranked by your real clicks, impressions and traffic | 🟡 Planned |
+| **Connect guide**: step by step setup for Search Console, GA4 and every assistant | 🟡 Planned |
+| **Scheduled re-audits with email reminders**: a fresh audit on your schedule, and an email when new issues appear | 🟡 Planned |
+| **AI search visibility tracking**: whether AI assistants mention and cite your site, tracked over time | 🟡 Planned |
+| **WordPress sites**: when the crawl detects WordPress, the report points to [RankReady](https://hostmy.blog/plugins/rankready/) for AI SEO fixes inside WordPress | 🟡 Planned |
+
+### Self-hosted engine (this repository)
 
 | | Status |
 |---|:---:|

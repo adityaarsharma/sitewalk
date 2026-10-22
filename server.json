@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.adityaarsharma/librecrawl-technical-seo-audit-mcp",
   "title": "Sitewalk: SEO Audit & Site Crawler",
-  "description": "Self-hosted technical SEO audit MCP server. 50+ checks, WAF detection, PDF and CSV reports. Powered by LibreCrawl.",
+  "description": "Self-hosted technical SEO audit MCP server. 30+ checks, WAF detection, PDF and CSV reports. Powered by LibreCrawl.",
   "version": "2.4.0",
   "websiteUrl": "https://github.com/adityaarsharma/sitewalk",
   "repository": {
