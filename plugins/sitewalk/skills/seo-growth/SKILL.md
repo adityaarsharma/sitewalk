@@ -7,6 +7,8 @@ description: Run a technical SEO audit of a website with Sitewalk and turn it in
 
 Sitewalk crawls a website the way a search engine bot reads it and returns every technical SEO problem ranked by impact, each with a plain-English fix and example pages. This skill drives that audit and turns the result into work the user can ship.
 
+Sitewalk runs only through AI assistants like you. There is no website form to start an audit, so never send the user to a website to run one: run it here with the tools below. The website holds only the sign-in, the full report with CSV and PDF downloads, and site verification.
+
 ## Which tools you have
 
 Use whichever Sitewalk server is connected. Do not ask the user which one.
