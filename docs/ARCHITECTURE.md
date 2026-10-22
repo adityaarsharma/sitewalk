@@ -36,7 +36,7 @@ Persists per-session progress to SQLite in WAL mode. Because progress is on disk
 A small, typed layer over LibreCrawl's HTTP API (start/stop/pause/resume crawl, status snapshots, export). Reuses `server.py`'s authenticated client so there's a single login. Also derives per-chunk metrics (p95 latency, error rate) that feed the AIMD controller.
 
 ### Check modules
-`external_links.py` (outbound-link validation into 17 status classes), `schema_validator.py` (schema.org + Google Rich Results, `@graph` aware), `content_audit.py` (readability, AI-tells, boilerplate), `extended_checks.py` (the bulk of the 50+ technical checks), `sitemap_fill.py` (pulls in sitemap URLs not linked internally, so orphan pages are audited too).
+`external_links.py` (outbound-link validation into 17 status classes), `schema_validator.py` (schema.org + Google Rich Results, `@graph` aware), `content_audit.py` (readability, AI-tells, boilerplate), `extended_checks.py` (the bulk of the 30+ technical checks), `sitemap_fill.py` (pulls in sitemap URLs not linked internally, so orphan pages are audited too).
 
 ### `pdf_report.py` — reporting
 Turns the audit's Markdown report into a branded PDF: Markdown → HTML (`markdown`) → PDF (`WeasyPrint`). WeasyPrint needs system libraries (Pango, Cairo) — these are baked into the Docker image.

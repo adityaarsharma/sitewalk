@@ -57,7 +57,7 @@ What sets the hosted route apart: you start the crawl from the chat itself, with
 
 ### 2. Self-hosted: this repository
 
-The full open-source engine and MCP server: no page cap when self-hosted (your own server), 38 MCP tools, 50+ checks (self-hosted build), branded PDF plus CSVs, and nothing kept on the server after you download the zip. Runs on your own machine or server with Docker. Jump to [Install in 60 seconds](#-install-in-60-seconds).
+The full open-source engine and MCP server: no page cap when self-hosted (your own server), 38 MCP tools, 30+ checks (self-hosted build), branded PDF plus CSVs, and nothing kept on the server after you download the zip. Runs on your own machine or server with Docker. Jump to [Install in 60 seconds](#-install-in-60-seconds).
 
 ### Hosted or self-hosted
 
@@ -66,7 +66,7 @@ The full open-source engine and MCP server: no page cap when self-hosted (your o
 | Setup | None. Sign in with email | Docker or the one-line installer |
 | Pages per audit | 50 for any site, 500 for a site you verify | No cap |
 | Audits | 3 a month on the free account, 50 a month on Pro (waitlist) | As many as your server can run |
-| Checks | The core technical checks, ranked by impact | 50+ checks (extended checks), extended CSVs |
+| Checks | The core technical checks, ranked by impact | 30+ checks (extended checks), extended CSVs |
 | Output | Ranked list in chat, full report with CSV and PDF | Zip with a PDF and 7 CSVs |
 | Data | Reports stay private to your account | Ephemeral: wiped after you download |
 | Crawler | SitewalkBot, obeys robots.txt, 1 page every 2 seconds | Your own IP and settings |
@@ -95,7 +95,7 @@ Then ask: `Run the SEO growth loop on https://yoursite.com`. The skill is in [`p
 - [One command = a complete audit](#-one-command--a-complete-audit-v220)
 - [Why this exists](#-why-this-exists)
 - [Install in 60 seconds](#-install-in-60-seconds): [one-liner](#-install-in-60-seconds) · [Docker](#-run-the-full-stack-with-docker-recommended-for-self-hosting) · [manual](#-manual-install)
-- [50+ checks every audit](#-50-checks-every-audit)
+- [30+ checks every audit](#-30-checks-every-audit)
 - [Feature comparison](#-feature-comparison-to-other-on-site-seo-crawlers)
 - [What every audit produces](#-what-every-audit-produces)
 - [Your first audit](#-your-first-audit)
@@ -129,7 +129,7 @@ You:    Show me broken pages + broken external links + hreflang errors
 Agent:  → reads CSVs, prints filtered tables. Server already forgot the audit.
 ```
 
-That's the product. **Your AI assistant runs a full technical SEO audit for you.** With the self-hosted build you get a branded PDF + 7 CSVs covering 50+ technical checks (the extended checks), ready to hand a client. The server wipes everything the moment you download.
+That's the product. **Your AI assistant runs a full technical SEO audit for you.** With the self-hosted build you get a branded PDF + 7 CSVs covering 30+ technical checks (the extended checks), ready to hand a client. The server wipes everything the moment you download.
 
 ---
 
@@ -263,9 +263,9 @@ Add to your client config (Claude Desktop example):
 
 ---
 
-## 🚀 50+ checks every audit
+## 🚀 30+ checks every audit
 
-> These 50+ checks are the extended checks in the self-hosted build. The hosted ChatGPT version runs the core technical checks.
+> These 30+ checks are the extended checks in the self-hosted build. The hosted ChatGPT version runs the core technical checks.
 
 <table>
 <tr>
@@ -381,7 +381,7 @@ Single zip, 9 files:
 | `sitemap-recon.csv` | Sitemap-vs-crawl diff |
 | `external-links.csv` | Every outbound URL + status |
 | `content-audit.csv` | Per-page readability + AI-tells |
-| `extended-checks.csv` | 1 row per (URL × check × severity × detail): all 50+ checks |
+| `extended-checks.csv` | 1 row per (URL × check × severity × detail): all 30+ checks |
 | `schema-validation.csv` | JSON-LD findings per page against schema.org and Google rich-result required fields |
 
 ---

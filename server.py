@@ -86,7 +86,7 @@ A single zip with 9 files:
   - <domain>-<ts>.sitemap-recon.csv — sitemap drift table
   - <domain>-<ts>.external-links.csv — every outbound URL HEAD-validated
   - <domain>-<ts>.content-audit.csv — readability, AI-tells, punctuation
-  - <domain>-<ts>.extended-checks.csv — 50+ technical SEO findings
+  - <domain>-<ts>.extended-checks.csv — 30+ technical SEO findings
   - <domain>-<ts>.schema-validation.csv — JSON-LD checks against Google rich-result fields
 
 The PDF report surfaces the Summary scorecard (with external-link counts),
@@ -1914,7 +1914,7 @@ def librecrawl_audit(url: str, max_pages: int = 500, confirm_unbounded: bool = F
     """
     Full SEO / technical site audit in one call — the Screaming Frog alternative.
 
-    Crawls the entire site, runs 35+ checks across 17 categories (broken links,
+    Crawls the entire site, runs 30+ checks across 17 categories (broken links,
     duplicate titles, missing H1, thin content, canonical issues, redirect chains,
     orphan pages, image alt text, Open Graph, hreflang, analytics coverage, and
     more), then saves a structured Markdown report with a prioritised fix checklist.
@@ -2137,7 +2137,7 @@ def librecrawl_site_check(url: str) -> dict:
 def librecrawl_generate_report(crawl_id: int = None) -> dict:
     """
     Generate a full Markdown SEO audit report from a completed crawl.
-    Runs 35+ checks (broken links, titles, metas, canonicals, images, orphan pages,
+    Runs 30+ checks (broken links, titles, metas, canonicals, images, orphan pages,
     redirect chains, analytics coverage, etc.) and saves as a .md file.
 
     USE THIS after librecrawl_start_crawl() finishes, or to re-generate a report
