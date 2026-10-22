@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "sitewalk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sitewalk: SEO Audit & Site Crawler. Connects the hosted Sitewalk crawler and adds an SEO growth agent that audits a site, ranks the fixes by impact, writes the fix plan and re-checks after you ship.",
   "author": {
     "name": "Aditya Sharma",

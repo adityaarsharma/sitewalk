@@ -1,7 +1,7 @@
 {
   "name": "sitewalk",
   "displayName": "Sitewalk: SEO Audit & Site Crawler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Audit any website for technical SEO problems from inside Cursor. Sitewalk crawls the site, ranks every issue by impact and gives a plain-English fix for each, with example pages.",
   "author": {
     "name": "Aditya Sharma",
