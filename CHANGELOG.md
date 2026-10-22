@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.4.0] - 2026-10-22
+
+### Added
+- Sitewalk plugin for Claude Code and Cursor (`plugins/sitewalk/`). It connects the hosted Sitewalk server at `https://audit.adityaarsharma.com/mcp` and ships the `seo-growth` skill plus `seo-growth-agent`: audit, rank the fixes by impact, write a stack-specific fix plan, re-check after you ship.
+- Marketplace manifests for Claude Code (`.claude-plugin/marketplace.json`) and Cursor (`.cursor-plugin/marketplace.json`). Install with `/plugin marketplace add adityaarsharma/sitewalk`.
+- README: the ChatGPT plugin link, hosted connection steps for Cursor, Claude Code and any MCP client, and a hosted vs self-hosted comparison.
+
+### Changed
+- Name is now "Sitewalk: SEO Audit & Site Crawler". The repository moved from `librecrawl-technical-seo-audit-mcp` to `sitewalk`; GitHub redirects old links. Docs, installer and `server.json` URLs point at the new path. The MCP registry name, the default install directory and the PM2 process name are unchanged, so existing installs keep working.
+
 ## [2.3.4] — 2026-09-25
 
 ### Fixed

@@ -1,0 +1,23 @@
+{
+  "name": "sitewalk",
+  "owner": {
+    "name": "Aditya Sharma",
+    "url": "https://adityaarsharma.com"
+  },
+  "metadata": {
+    "description": "Sitewalk: SEO Audit & Site Crawler for Claude Code. Hosted technical SEO crawler plus an SEO growth agent.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "sitewalk",
+      "source": "./plugins/sitewalk",
+      "description": "Audit any website for technical SEO problems, ranked by impact with a plain-English fix for each, and an SEO growth agent that turns the audit into a fix plan and re-checks after you ship.",
+      "version": "1.0.0",
+      "author": { "name": "Aditya Sharma", "url": "https://adityaarsharma.com" },
+      "homepage": "https://audit.adityaarsharma.com/",
+      "license": "MIT",
+      "keywords": ["seo", "seo audit", "site audit", "technical seo", "crawler"]
+    }
+  ]
+}

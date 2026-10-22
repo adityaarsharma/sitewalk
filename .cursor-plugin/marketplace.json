@@ -1,0 +1,17 @@
+{
+  "name": "sitewalk",
+  "owner": {
+    "name": "Aditya Sharma",
+    "email": "sitewalk@adityaarsharma.com"
+  },
+  "metadata": {
+    "description": "Sitewalk: SEO Audit & Site Crawler for Cursor."
+  },
+  "plugins": [
+    {
+      "name": "sitewalk",
+      "source": "plugins/sitewalk",
+      "description": "Audit any website for technical SEO problems, ranked by impact with a plain-English fix for each."
+    }
+  ]
+}

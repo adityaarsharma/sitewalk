@@ -1,0 +1,18 @@
+{
+  "name": "sitewalk",
+  "displayName": "Sitewalk: SEO Audit & Site Crawler",
+  "version": "1.0.0",
+  "description": "Audit any website for technical SEO problems from inside Cursor. Sitewalk crawls the site, ranks every issue by impact and gives a plain-English fix for each, with example pages.",
+  "author": {
+    "name": "Aditya Sharma",
+    "email": "sitewalk@adityaarsharma.com"
+  },
+  "homepage": "https://audit.adityaarsharma.com/",
+  "repository": "https://github.com/adityaarsharma/sitewalk",
+  "license": "MIT",
+  "logo": "assets/logo.svg",
+  "keywords": ["seo", "seo audit", "site audit", "technical seo", "site crawler", "broken links", "redirects", "canonical", "indexing", "mcp"],
+  "category": "integrations",
+  "tags": ["seo", "audit", "crawler", "mcp"],
+  "mcpServers": "./mcp.json"
+}

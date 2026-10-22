@@ -21,7 +21,7 @@ The server is a thin MCP wrapper (`server.py`) that drives a separate **LibreCra
 The fastest path. Handles Python, the Dockerized LibreCrawl backend, and your client config.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/adityaarsharma/librecrawl-technical-seo-audit-mcp/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/adityaarsharma/sitewalk/main/install.sh | bash
 ```
 
 It asks three questions — target client, optional Google PageSpeed key, optional GSC integration — then writes a ready-to-use MCP entry into your Claude / Cursor / Codex / Windsurf config.
@@ -31,8 +31,8 @@ It asks three questions — target client, optional Google PageSpeed key, option
 Best for self-hosting or a VPS. Brings up the LibreCrawl engine **and** the MCP together, health-gated, in one command.
 
 ```bash
-git clone https://github.com/adityaarsharma/librecrawl-technical-seo-audit-mcp.git
-cd librecrawl-technical-seo-audit-mcp
+git clone https://github.com/adityaarsharma/sitewalk.git
+cd sitewalk
 docker compose up --build
 ```
 
@@ -48,8 +48,8 @@ Stop with `docker compose down` (add `-v` to also drop the shared data volume).
 Python 3.10+, plus a LibreCrawl backend you run yourself (the Docker path above is the easiest way to get one).
 
 ```bash
-git clone https://github.com/adityaarsharma/librecrawl-technical-seo-audit-mcp.git
-cd librecrawl-technical-seo-audit-mcp
+git clone https://github.com/adityaarsharma/sitewalk.git
+cd sitewalk
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 LIBRECRAWL_URL=http://127.0.0.1:5080 python server.py
@@ -88,7 +88,7 @@ Run the server in stdio mode by launching it directly, with `MCP_TRANSPORT=stdio
   "mcpServers": {
     "librecrawl": {
       "command": "python",
-      "args": ["/absolute/path/to/librecrawl-technical-seo-audit-mcp/server.py"],
+      "args": ["/absolute/path/to/sitewalk/server.py"],
       "env": {
         "MCP_TRANSPORT": "stdio",
         "LIBRECRAWL_URL": "http://127.0.0.1:5080"
