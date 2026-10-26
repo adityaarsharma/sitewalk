@@ -1,0 +1,93 @@
+name: test-and-release
+
+# Every change that reaches main and touches shipped code is tested, then published
+# as a GitHub release with the next patch version. Put #minor or #major anywhere in
+# the head commit message to bump higher. Docs-only pushes publish nothing.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+      - ".github/FUNDING.yml"
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install system libraries for PDF reports
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libpango-1.0-0 libpangocairo-1.0-0 libcairo2 libgdk-pixbuf-2.0-0 libharfbuzz0b libfribidi0
+      - run: pip install -r requirements.txt pytest
+      - run: python -m pytest -q tests
+      - run: bash -n setup.sh
+      - run: docker compose config -q
+
+  release:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Work out the next version
+        id: ver
+        env:
+          HEAD_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          last=$(git tag --list 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -n1)
+          last=${last:-v0.0.0}
+          IFS=. read -r major minor patch <<< "${last#v}"
+          case "$HEAD_MSG" in
+            *"#major"*) major=$((major+1)); minor=0; patch=0 ;;
+            *"#minor"*) minor=$((minor+1)); patch=0 ;;
+            *) patch=$((patch+1)) ;;
+          esac
+          next="v${major}.${minor}.${patch}"
+          if git rev-parse -q --verify "refs/tags/${next}" >/dev/null; then
+            echo "Tag ${next} already exists, nothing to publish"; echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          echo "last=${last}" >> "$GITHUB_OUTPUT"
+          echo "next=${next}" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+      - name: Stamp the version into server.json (release copy only)
+        if: steps.ver.outputs.skip == 'false'
+        run: |
+          mkdir -p dist
+          python3 - <<'PY'
+          import json, os
+          v = os.environ["NEXT"].lstrip("v")
+          d = json.load(open("server.json"))
+          d["version"] = v
+          json.dump(d, open("dist/server.json", "w"), indent=2)
+          PY
+        env:
+          NEXT: ${{ steps.ver.outputs.next }}
+      - name: Publish the release
+        if: steps.ver.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEXT: ${{ steps.ver.outputs.next }}
+          LAST: ${{ steps.ver.outputs.last }}
+        run: |
+          set -euo pipefail
+          args=(--target "$GITHUB_SHA" --title "Sitewalk $NEXT" --generate-notes)
+          if [ "$LAST" != "v0.0.0" ]; then args+=(--notes-start-tag "$LAST"); fi
+          gh release create "$NEXT" dist/server.json "${args[@]}"
