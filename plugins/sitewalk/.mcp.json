@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "sitewalk": {
-      "type": "http",
-      "url": "https://audit.adityaarsharma.com/mcp"
-    }
-  }
-}
