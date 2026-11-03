@@ -1,5 +1,24 @@
 # Changelog
 
+## [Unreleased]
+
+### Hosted service (audit.adityaarsharma.com)
+
+This repository is the self-hosted crawler. The hosted service runs separate code, so the items below do not change anything you run from this repo. They are listed so the hosted roadmap in the README matches what is live.
+
+Live:
+- AI-search readiness checks: llms.txt, access rules for GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended and CCBot, AI-bot blocks by header, and answer-structure signals. The report ends with a short written read of the site.
+- Structured-data inventory: every type found, per template, with expected types missing for that template, `@id` integrity, repeated and conflicting markup, and required and recommended properties for more types.
+- Health trend: for a signed-in owner's repeat audits of one site, health across up to 12 audits and what changed.
+- Per-URL table in the web report (sort, filter by issue, indexability and status, paging), the full list of pages that link to a URL, outlinks with anchor text, an anchor-text table, and a links CSV.
+- Crawl scope: audit one folder, with up to 10 exclude patterns. A scoped audit is marked partial, so whole-site checks do not run, and it is compared only with audits of the same scope.
+
+Built, switched off until a key or a decision exists:
+- Core Web Vitals on a three-page sample through the PageSpeed Insights API (needs an API key).
+- Scheduled weekly or monthly re-crawls.
+
+Not shipped: JavaScript rendering. The crawler still audits the HTML the server sends; the report says so for pages that look like empty app shells.
+
 ## [2.4.0] - 2026-10-22
 
 ### Added
