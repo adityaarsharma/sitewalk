@@ -8,10 +8,18 @@
 
 **Ask your AI assistant to audit a website. Get the technical SEO problems back, ranked by impact, with a plain fix for each.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
-[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-orange?style=for-the-badge)](https://modelcontextprotocol.io)
-[![Latest Release](https://img.shields.io/github/v/release/adityaarsharma/sitewalk?style=for-the-badge&color=brightgreen)](https://github.com/adityaarsharma/sitewalk/releases)
-[![Powered by LibreCrawl](https://img.shields.io/badge/Powered%20by-LibreCrawl-7C3AED?style=for-the-badge)](https://github.com/PhialsBasement/LibreCrawl)
+<p>
+<a href="https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a"><img alt="Use Sitewalk in ChatGPT" src="https://img.shields.io/badge/Use%20Sitewalk%20in%20ChatGPT-10A37F?style=for-the-badge&logo=openai&logoColor=white"></a>
+<a href="#set-it-up-on-your-machine"><img alt="Self-host with Docker" src="https://img.shields.io/badge/Self--host%20with%20Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"></a>
+<a href="https://audit.adityaarsharma.com/"><img alt="Website" src="https://img.shields.io/badge/audit.adityaarsharma.com-111827?style=for-the-badge"></a>
+</p>
+<p>
+<a href="#what-is-the-chatgpt-app"><img alt="What is the ChatGPT app?" src="https://img.shields.io/badge/What%20is%20the%20ChatGPT%20app%3F-6B7280?style=flat-square"></a>
+<a href="#what-is-mcp"><img alt="What is MCP?" src="https://img.shields.io/badge/What%20is%20MCP%3F-6B7280?style=flat-square"></a>
+<a href="LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-blue?style=flat-square"></a>
+<a href="https://github.com/adityaarsharma/sitewalk/releases"><img alt="Latest release" src="https://img.shields.io/github/v/release/adityaarsharma/sitewalk?style=flat-square&color=brightgreen"></a>
+<a href="https://github.com/PhialsBasement/LibreCrawl"><img alt="Powered by LibreCrawl" src="https://img.shields.io/badge/powered%20by-LibreCrawl-7C3AED?style=flat-square"></a>
+</p>
 
 </div>
 
@@ -19,7 +27,15 @@
 
 This repository is the Sitewalk MCP server and nothing else: a Python server that drives the open-source [LibreCrawl](https://github.com/PhialsBasement/LibreCrawl) crawler, runs 30+ technical SEO checks, and hands your AI assistant a ranked report plus a zip of PDF and CSVs. It runs on your own machine, with no account, no sign-in and no page cap. Nothing leaves your machine except the requests the crawler makes to the site you audit.
 
-Prefer not to host anything? The same audit is available as an app inside [ChatGPT](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a).
+Prefer not to host anything? Use the hosted [ChatGPT app](#what-is-the-chatgpt-app).
+
+## What is the ChatGPT app?
+
+Sitewalk also runs as an app inside ChatGPT, hosted by us. There is nothing to install: open it, type `Audit https://yoursite.com`, and ChatGPT brings back the technical SEO problems ranked by impact, a plain fix for each, and a link to the full report. Plans and limits are on [audit.adityaarsharma.com](https://audit.adityaarsharma.com/). The hosted service is separate from the code in this repository.
+
+## What is MCP?
+
+MCP (Model Context Protocol) is an open standard that lets an AI assistant call outside tools. This repository is one such tool: your assistant asks it to crawl a site and gets the findings back. You do not need to know anything about MCP to use the ChatGPT app. It only matters if you run this repository yourself.
 
 ## Set it up on your machine
 
