@@ -12,14 +12,12 @@ Live:
 - Health trend: for a signed-in owner's repeat audits of one site, health across up to 12 audits and what changed.
 - Per-URL table in the web report (sort, filter by issue, indexability and status, paging), the full list of pages that link to a URL, outlinks with anchor text, an anchor-text table, and a links CSV.
 - Crawl scope: audit one folder, with up to 10 exclude patterns. A scoped audit is marked partial, so whole-site checks do not run, and it is compared only with audits of the same scope.
-
+- JavaScript rendering for Pro audits: the home page and pages that look like empty app shells are rendered in a headless browser (up to 100 pages per audit), and the report flags content that only appears after scripts run. Other audits read the HTML the server sends.
 - Core Web Vitals on a three-page sample through the PageSpeed Insights API, with a daily cap and a 24-hour cache. If Google does not answer, the report says the check did not run.
 - A waiting line that shows your place in the queue and a live count of pages found, instead of a timer.
 
 Built, switched off until a decision exists:
 - Scheduled weekly or monthly re-crawls.
-
-Not shipped: JavaScript rendering. The crawler still audits the HTML the server sends; the report says so for pages that look like empty app shells.
 
 ## [2.4.0] - 2026-10-22
 
