@@ -4,9 +4,9 @@
 
 <img src="docs/assets/sitewalk-logo.png" alt="Sitewalk logo" width="96" height="96">
 
-# Sitewalk: technical SEO audit MCP server
+# Sitewalk: SEO audit in ChatGPT, and the open-source technical SEO audit server
 
-**Ask your AI assistant to audit a website. Get the technical SEO problems back, ranked by impact, with a plain fix for each.**
+**Ask ChatGPT to audit your website. Find what is broken, what to fix first, and how, in about a minute of your time.**
 
 <p>
 <a href="https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a"><img alt="Use Sitewalk in ChatGPT" src="https://img.shields.io/badge/Use%20Sitewalk%20in%20ChatGPT-10A37F?style=for-the-badge&logo=openai&logoColor=white"></a>
@@ -14,7 +14,7 @@
 <a href="https://audit.adityaarsharma.com/"><img alt="Website" src="https://img.shields.io/badge/audit.adityaarsharma.com-111827?style=for-the-badge"></a>
 </p>
 <p>
-<a href="#what-is-the-chatgpt-app"><img alt="What is the ChatGPT app?" src="https://img.shields.io/badge/What%20is%20the%20ChatGPT%20app%3F-6B7280?style=flat-square"></a>
+<a href="#what-is-the-chatgpt-app"><img alt="ChatGPT or self-host?" src="https://img.shields.io/badge/ChatGPT%20or%20self--host%3F-6B7280?style=flat-square"></a>
 <a href="#what-is-mcp"><img alt="What is MCP?" src="https://img.shields.io/badge/What%20is%20MCP%3F-6B7280?style=flat-square"></a>
 <a href="LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-blue?style=flat-square"></a>
 <a href="https://github.com/adityaarsharma/sitewalk/releases"><img alt="Latest release" src="https://img.shields.io/github/v/release/adityaarsharma/sitewalk?style=flat-square&color=brightgreen"></a>
@@ -25,19 +25,61 @@
 
 ---
 
-This repository is the Sitewalk MCP server and nothing else: a Python server that drives the open-source [LibreCrawl](https://github.com/PhialsBasement/LibreCrawl) crawler, runs 30+ technical SEO checks, and hands your AI assistant a ranked report plus a zip of PDF and CSVs. It runs on your own machine, with no account, no sign-in and no page cap. Nothing leaves your machine except the requests the crawler makes to the site you audit.
+Sitewalk crawls your site the way a search engine bot does and gives you the technical SEO problems ranked by impact, each with a plain fix, a site health score out of 100, and a report you can send to a client or developer.
 
-Prefer not to host anything? Use the hosted [ChatGPT app](#what-is-the-chatgpt-app).
+## Two ways to use it
 
-## What is the ChatGPT app?
+| | **In ChatGPT** (hosted) | **Self-hosted** (this repository) |
+|---|---|---|
+| Setup | None. Open the app, ask for an audit | Docker, one command: `./setup.sh` |
+| Checks | 200+ in 18 groups | 30+ |
+| Cost | Free to start, 5 audits a month | Free forever, MIT licence |
+| Pages per audit | 50 without a confirmed email, 500 with one | No cap, your machine |
+| Your data | Report links, CSV and PDF | Never leaves your machine |
+| Best for | Site owners, freelancers, agencies | Developers who want to run it themselves |
 
-Sitewalk also runs as an app inside ChatGPT, hosted by us. There is nothing to install: open it, type `Audit https://yoursite.com`, and ChatGPT brings back the technical SEO problems ranked by impact, a plain fix for each, and a link to the full report. Plans and limits are on [audit.adityaarsharma.com](https://audit.adityaarsharma.com/). The hosted service is separate from the code in this repository.
+Start in ChatGPT: [Use Sitewalk in ChatGPT](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a). This repository is the open-source server and nothing else: a Python MCP server that drives the open-source [LibreCrawl](https://github.com/PhialsBasement/LibreCrawl) crawler. The hosted service runs separate code.
+
+## Try it in 60 seconds
+
+1. Open [Sitewalk in ChatGPT](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a).
+2. Type: `Audit https://yoursite.com for technical SEO problems`
+3. The first time, enter the 6-digit code we email you. No password.
+
+Other things people ask it:
+
+- `What should I fix first on my site?`
+- `Find broken links, redirect chains and duplicate titles`
+- `Is a noindex tag or robots.txt keeping my pages out of search?`
+- `Is my site ready for AI search? Check llms.txt and AI crawler access`
+- `Monitor yoursite.com and tell me if something breaks`
+
+## What you get
+
+- A site health score out of 100 and every problem ranked worst first, with the pages it affects.
+- A plain-English fix for each problem, so you can act on it or hand it to a developer.
+- A web report, plus PDF and CSV downloads.
+- Checks for broken links and redirect chains, titles and meta descriptions, canonicals and noindex, hreflang, sitemaps, structured data, images, security headers, page speed and AI-search readiness.
+- Monthly monitoring of a site you have audited, with an email only when something changes.
+- Politeness built in: it reads robots.txt, identifies itself as SitewalkBot, and keeps a slow pace.
+
+Not covered: backlinks, keyword rankings, Google Search Console or analytics data.
+
+## Common questions
+
+**Is there a Screaming Frog alternative that works inside ChatGPT?** Sitewalk runs the crawl on its own server and returns a ranked list in the chat, so there is nothing to install. Screaming Frog is stronger for very large sites and custom extraction: see the [comparison](https://audit.adityaarsharma.com/alternatives/screaming-frog/), with dated sources.
+
+**Is there a free technical SEO audit tool?** Yes. Sitewalk is free for 5 audits a month in ChatGPT, and the self-hosted server is free with no limits.
+
+**Does it work on any website?** Any public website, within robots.txt. A site that blocks crawlers will say so in the report.
+
+**How long does an audit take?** A small site usually takes a few minutes, a 500-page audit 20 to 60 minutes. It keeps running if you close the chat, and you get an email when it is done.
 
 ## What is MCP?
 
-MCP (Model Context Protocol) is an open standard that lets an AI assistant call outside tools. This repository is one such tool: your assistant asks it to crawl a site and gets the findings back. You do not need to know anything about MCP to use the ChatGPT app. It only matters if you run this repository yourself.
+MCP (Model Context Protocol) is an open standard that lets an AI assistant call outside tools. This repository is one such tool: your assistant asks it to crawl a site and gets the findings back. You do not need to know anything about MCP to use Sitewalk in ChatGPT. It only matters if you run this repository yourself.
 
-## Set it up on your machine
+## Self-host it
 
 You need [Docker](https://docs.docker.com/get-docker/) running. Then:
 
@@ -79,9 +121,9 @@ The server listens on `http://127.0.0.1:5081/mcp` (streamable HTTP).
 
 Then ask: `Audit https://yoursite.com for technical SEO problems`.
 
-## What you get
+## Self-hosted details
 
-- 30+ checks per audit (broken links, redirects, canonicals, titles and descriptions, headings, schema, images, hreflang, sitemap gaps, and more). Full list and the nine report files: [docs/CHECKS.md](docs/CHECKS.md).
+- 30+ checks per audit (self-hosted) (broken links, redirects, canonicals, titles and descriptions, headings, schema, images, hreflang, sitemap gaps, and more). Full list and the nine report files: [docs/CHECKS.md](docs/CHECKS.md).
 - A branded PDF, a Markdown copy and CSVs, zipped in `./reports`.
 - Chunked crawling that does not time out, WAF challenge detection, and a crawl delay that adapts to the site.
 - 38 MCP tools: [docs/TOOLS.md](docs/TOOLS.md).
