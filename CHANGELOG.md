@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Docs
+- README now leads with the benefit: ask ChatGPT for an SEO audit, a hosted-versus-self-hosted table, a 60-second start, example prompts and common questions. Issue templates added.
+
 ### Hosted service (audit.adityaarsharma.com)
 
 This repository is the self-hosted crawler. The hosted service runs separate code, so the items below do not change anything you run from this repo. They are listed so the hosted roadmap in the README matches what is live.

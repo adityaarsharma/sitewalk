@@ -1,0 +1,14 @@
+name: Bug report
+description: Something in the self-hosted Sitewalk server did not work
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes: { label: What happened, description: "What you asked for and what came back" }
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes: { label: Version, description: "Output of ./setup.sh --check or the release tag" }
+  - type: textarea
+    id: logs
+    attributes: { label: Logs or error text, render: shell }

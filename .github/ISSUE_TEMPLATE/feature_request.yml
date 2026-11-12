@@ -1,0 +1,8 @@
+name: Check or feature request
+description: A technical SEO check or feature you want added
+labels: [enhancement]
+body:
+  - type: textarea
+    id: want
+    attributes: { label: What should it find or do, description: "Describe the problem it would catch, with an example URL if you can" }
+    validations: { required: true }
