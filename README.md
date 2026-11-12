@@ -75,6 +75,12 @@ Not covered: backlinks, keyword rankings, Google Search Console or analytics dat
 
 **How long does an audit take?** A small site usually takes a few minutes, a 500-page audit 20 to 60 minutes. It keeps running if you close the chat, and you get an email when it is done.
 
+## A free, open-source Screaming Frog alternative
+
+The self-hosted build in this repository is free and MIT licensed, with no page cap and no account. You run it with Docker, ask your AI assistant to audit a site, and get a ranked list of technical SEO problems, a PDF and CSVs, with your data staying on your machine. It runs 30+ checks: broken links, redirects, canonicals, titles and descriptions, headings, schema, images, hreflang and sitemap gaps.
+
+Screaming Frog is stronger for very large crawls, custom extraction and JavaScript rendering of a whole site. If you want the result inside ChatGPT without hosting anything, use the [hosted app](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a) (200+ checks, 5 free audits a month). Dated comparison: [Sitewalk vs Screaming Frog](https://audit.adityaarsharma.com/alternatives/screaming-frog/).
+
 ## What is MCP?
 
 MCP (Model Context Protocol) is an open standard that lets an AI assistant call outside tools. This repository is one such tool: your assistant asks it to crawl a site and gets the findings back. You do not need to know anything about MCP to use Sitewalk in ChatGPT. It only matters if you run this repository yourself.
