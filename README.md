@@ -11,7 +11,7 @@
 <p>
 <a href="https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a"><img alt="Use Sitewalk in ChatGPT" src="https://img.shields.io/badge/Use%20Sitewalk%20in%20ChatGPT-10A37F?style=for-the-badge&logo=openai&logoColor=white"></a>
 <a href="#set-it-up-on-your-machine"><img alt="Self-host with Docker" src="https://img.shields.io/badge/Self--host%20with%20Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"></a>
-<a href="https://audit.adityaarsharma.com/"><img alt="Website" src="https://img.shields.io/badge/audit.adityaarsharma.com-111827?style=for-the-badge"></a>
+<a href="https://sitewalkseo.com/"><img alt="Website" src="https://img.shields.io/badge/sitewalkseo.com-111827?style=for-the-badge"></a>
 </p>
 <p>
 <a href="#what-is-the-chatgpt-app"><img alt="ChatGPT or self-host?" src="https://img.shields.io/badge/ChatGPT%20or%20self--host%3F-6B7280?style=flat-square"></a>
@@ -67,7 +67,7 @@ Not covered: backlinks, keyword rankings, Google Search Console or analytics dat
 
 ## Common questions
 
-**Is there a Screaming Frog alternative that works inside ChatGPT?** Sitewalk runs the crawl on its own server and returns a ranked list in the chat, so there is nothing to install. Screaming Frog is stronger for very large sites and custom extraction: see the [comparison](https://audit.adityaarsharma.com/alternatives/screaming-frog/), with dated sources.
+**Is there a Screaming Frog alternative that works inside ChatGPT?** Sitewalk runs the crawl on its own server and returns a ranked list in the chat, so there is nothing to install. Screaming Frog is stronger for very large sites and custom extraction: see the [comparison](https://sitewalkseo.com/alternatives/screaming-frog/), with dated sources.
 
 **Is there a free technical SEO audit tool?** Yes. Sitewalk is free for 5 audits a month in ChatGPT, and the self-hosted server is free with no limits.
 
@@ -79,7 +79,7 @@ Not covered: backlinks, keyword rankings, Google Search Console or analytics dat
 
 The self-hosted build in this repository is free and MIT licensed, with no page cap and no account. You run it with Docker, ask your AI assistant to audit a site, and get a ranked list of technical SEO problems, a PDF and CSVs, with your data staying on your machine. It runs 30+ checks: broken links, redirects, canonicals, titles and descriptions, headings, schema, images, hreflang and sitemap gaps.
 
-Screaming Frog is stronger for very large crawls, custom extraction and JavaScript rendering of a whole site. If you want the result inside ChatGPT without hosting anything, use the [hosted app](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a) (200+ checks, 5 free audits a month). Dated comparison: [Sitewalk vs Screaming Frog](https://audit.adityaarsharma.com/alternatives/screaming-frog/).
+Screaming Frog is stronger for very large crawls, custom extraction and JavaScript rendering of a whole site. If you want the result inside ChatGPT without hosting anything, use the [hosted app](https://chatgpt.com/plugins/plugin_asdk_app_6ac47963cb448191a5b1757e0682bd6a) (200+ checks, 5 free audits a month). Dated comparison: [Sitewalk vs Screaming Frog](https://sitewalkseo.com/alternatives/screaming-frog/).
 
 ## What is MCP?
 
